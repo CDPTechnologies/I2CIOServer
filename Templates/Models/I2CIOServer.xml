@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Model Name="I2CIOServer" Version="2.0">
+
+  <ModelTypeClass>C++</ModelTypeClass>
+  <BaseModel>IOServer</BaseModel>
+  <Priority>high</Priority>
+  <fs>100</fs> 
+
+  <Attributes>
+    <Attribute Name="Adapter" Type="string" Required="1" Description=""/>
+  </Attributes>
+
+  <Element Name="Device" Property="0" AcceptsBase="I2CDevice"/>
+
+</Model>

@@ -1,0 +1,8 @@
+LIBNAME = I2CIO
+!build_pass: message($$TARGET: Including $$LIBNAME features.)
+BASEDIR = $$clean_path($$PWD/..)
+INCLUDEPATH *= $$BASEDIR/include/$$LIBNAME
+LIBS *= -L$$BASEDIR/lib -l$$LIBNAME$$EXT
+
+DEPSFILE = $$PWD/$$lower($$LIBNAME)_dependencies.pri
+exists($$DEPSFILE): include($$DEPSFILE)

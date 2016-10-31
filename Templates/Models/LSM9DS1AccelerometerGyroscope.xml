@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Model Name="LSM9DS1AccelerometerGyroscope" Version="2.0">
+
+  <ModelTypeClass>C++</ModelTypeClass>
+  <BaseModel>I2CDevice</BaseModel>
+
+  <Attributes>
+    <Attribute Name="Model" Type="string" Required="1" ReadOnly="1" Value="LSM9DS1AccelerometerGyroscope"/>
+    <Attribute Name="Address" Type="unsigned char" TypeHint="Radix" Radix="16" Required="1" Value="106" Description=""/>
+  </Attributes>
+
+  <CDPChannel Name="AngularRateX" Model="CDPSignalChannel&lt;double&gt;" Type="double" Input="0" Unit="dps" Description=""/>
+  <CDPChannel Name="AngularRateY" Model="CDPSignalChannel&lt;double&gt;" Type="double" Input="0" Unit="dps" Description=""/>
+  <CDPChannel Name="AngularRateZ" Model="CDPSignalChannel&lt;double&gt;" Type="double" Input="0" Unit="dps" Description=""/>
+  <CDPChannel Name="AccelerationX" Model="CDPSignalChannel&lt;double&gt;" Type="double" Input="0" Unit="g" Description=""/>
+  <CDPChannel Name="AccelerationY" Model="CDPSignalChannel&lt;double&gt;" Type="double" Input="0" Unit="g" Description=""/>
+  <CDPChannel Name="AccelerationZ" Model="CDPSignalChannel&lt;double&gt;" Type="double" Input="0" Unit="g" Description=""/>
+
+</Model>
