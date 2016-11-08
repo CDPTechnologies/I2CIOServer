@@ -16,6 +16,7 @@ public:
   ~I2CAdapter();
 
   void Open(const std::string& filename);
+  bool IsOpen() const;
   void SetAddress(uint8_t address);
   std::vector<uint8_t> Read(uint8_t subaddress, std::vector<uint8_t>::size_type size);
   void Write(uint8_t subaddress, const std::vector<uint8_t>& data);

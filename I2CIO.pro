@@ -5,6 +5,8 @@ HEADERS += \
     I2CAdapter.h \
     I2CDeviceFactory.h \
     I2CDevice.h \
+    I2CException.h \
+    I2CHelpers.h \
     I2CIOBuilder.h \
     i2cio.h \
     I2CIOServer.h \
@@ -14,6 +16,7 @@ HEADERS += \
 SOURCES += \
     I2CDevice.cpp \
     I2CDeviceFactory.cpp \
+    I2CException.cpp \
     I2CIOBuilder.cpp \
     I2CIOServer.cpp \
     LSM9DS1AccelerometerGyroscope.cpp \

@@ -30,6 +30,11 @@ public:
   virtual std::string GetNodeTypeName() const override;
   virtual void FillNodeChildren(CDP::StudioAPI::NodeStream &serializer) const override;
 
+protected:
+  bool TrySetAdapterAddress(I2CAdapter& adapter) const;
+  bool TryWriteAdapter(I2CAdapter& adapter, uint8_t subaddress, const std::vector<uint8_t>& data) const;
+  bool TryReadAdapter(I2CAdapter& adapter, uint8_t subaddress, std::vector<uint8_t>& buffer) const;
+
 private:
   I2CDevice(const I2CDevice& rhs) = delete;
   const I2CDevice& operator= (const I2CDevice& rhs) = delete;

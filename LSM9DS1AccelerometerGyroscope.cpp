@@ -5,6 +5,8 @@
 #include "LSM9DS1AccelerometerGyroscope.h"
 
 #include "I2CAdapter.h"
+#include "I2CException.h"
+#include "I2CHelpers.h"
 
 #include <IO/ServerIO/ICDPChannel.h>
 
@@ -41,8 +43,13 @@ void LSM9DS1AccelerometerGyroscope::Configure(XMLElementEx* element, CDPComponen
 
 void LSM9DS1AccelerometerGyroscope::Initialize(I2CAdapter& adapter)
 {
-  adapter.SetAddress(GetAddress());
-  adapter.Write(CTRL_REG1_G, { 0x60 });
+  if (!TrySetAdapterAddress(adapter))
+  {
+    MessageLine("LSM9DS1AccelerometerGyroscope: Initialization failed");
+    return;
+  }
+  if (!TryWriteAdapter(adapter, CTRL_REG1_G, { 0x60 }))
+    MessageLine("LSM9DS1AccelerometerGyroscope: Initialization failed");
 }
 
 void LSM9DS1AccelerometerGyroscope::Process(I2CAdapter& adapter)
@@ -54,7 +61,12 @@ void LSM9DS1AccelerometerGyroscope::Process(I2CAdapter& adapter)
 
 void LSM9DS1AccelerometerGyroscope::ReadAngularRate(I2CAdapter& adapter)
 {
-  auto buffer = adapter.Read(0x18, 6);
+  vector<uint8_t> buffer(6);
+  if (!TryReadAdapter(adapter, 0x18, buffer))
+  {
+    MessageLine("LSM9DS1AccelerometerGyroscope: Reading angular rate failed");
+    return;
+  }
   m_angularRateX = CalcAngularResolution(buffer.at(1), buffer.at(0));
   m_angularRateY = CalcAngularResolution(buffer.at(3), buffer.at(2));
   m_angularRateZ = CalcAngularResolution(buffer.at(5), buffer.at(4));
@@ -62,7 +74,12 @@ void LSM9DS1AccelerometerGyroscope::ReadAngularRate(I2CAdapter& adapter)
 
 void LSM9DS1AccelerometerGyroscope::ReadAcceleration(I2CAdapter& adapter)
 {
-  auto buffer = adapter.Read(0x28, 6);
+  vector<uint8_t> buffer(6);
+  if (!TryReadAdapter(adapter, 0x28, buffer))
+  {
+    MessageLine("LSM9DS1AccelerometerGyroscope: Reading acceleration failed");
+    return;
+  }
   m_accelerationX = CalcAcceleration(buffer.at(1), buffer.at(0));
   m_accelerationY = CalcAcceleration(buffer.at(3), buffer.at(2));
   m_accelerationZ = CalcAcceleration(buffer.at(5), buffer.at(4));

@@ -5,6 +5,8 @@
 #include "I2CDevice.h"
 
 #include "I2CAdapter.h"
+#include "I2CException.h"
+#include "I2CHelpers.h"
 
 #include <CDPSystem/Base/CDPComponent.h>
 #include <CDPSystem/Base/CDPProperty.h>
@@ -91,4 +93,47 @@ void I2CDevice::FillNodeChildren(NodeStream &serializer) const
   serializer << AdoptedChild(d->name)
              << AdoptedChild(d->model)
              << AdoptedChild(d->address);
+}
+
+bool I2CDevice::TrySetAdapterAddress(I2CAdapter& adapter) const
+{
+  try
+  {
+    adapter.SetAddress(GetAddress());
+    return true;
+  }
+  catch (const I2CException& e)
+  {
+    MessageLine("I2CDevice: Cannot set address to %s: %s", GetAddress(), e.what());
+    return false;
+  }
+}
+
+
+bool I2CDevice::TryWriteAdapter(I2CAdapter& adapter, uint8_t subaddress, const std::vector<uint8_t>& data) const
+{
+  try
+  {
+    adapter.Write(subaddress, data);
+    return true;
+  }
+  catch (const I2CException& e)
+  {
+    MessageLine("I2CDevice: Cannot write to address %s: %s", subaddress, e.what());
+    return false;
+  }
+}
+
+bool I2CDevice::TryReadAdapter(I2CAdapter& adapter, uint8_t subaddress, std::vector<uint8_t>& buffer) const
+{
+  try
+  {
+    buffer = adapter.Read(subaddress, buffer.size());
+    return true;
+  }
+  catch (const I2CException& e)
+  {
+    MessageLine("I2CDevice: Cannot read from address %s: %s", subaddress, e.what());
+    return false;
+  }
 }

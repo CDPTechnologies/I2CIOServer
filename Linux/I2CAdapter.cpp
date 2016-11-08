@@ -4,9 +4,12 @@
 
 #include "I2CAdapter.h"
 
+#include "I2CException.h"
+
 #include <linux/i2c-dev.h>
 
 #include <fcntl.h>
+#include <string.h>
 #include <unistd.h>
 
 #include <sys/ioctl.h>
@@ -23,21 +26,21 @@ public:
 
   void SetAddress(uint8_t address)
   {
-    // TODO error handling
-    ioctl(file, I2C_SLAVE, address);
+    if (ioctl(file, I2C_SLAVE, address) == -1)
+      throw I2CException(strerror(errno));
   }
 
   void Write(const vector<uint8_t>& data)
   {
-    // TODO error handling
-    write(file, data.data(), data.size());
+    if (write(file, data.data(), data.size()) == -1)
+      throw I2CException(strerror(errno));
   }
 
   vector<uint8_t> Read(vector<uint8_t>::size_type size)
   {
-    // TODO error handling
     vector<uint8_t> buffer(size);
-    read(file, buffer.data(), buffer.size());
+    if (read(file, buffer.data(), buffer.size()) == -1)
+      throw I2CException(strerror(errno));
     return buffer;
   }
 
@@ -55,8 +58,14 @@ I2CAdapter::~I2CAdapter()
 
 void I2CAdapter::Open(const string& filename)
 {
-  // TODO error handling
   d->file = open(filename.c_str(), O_RDWR);
+  if (d->file == -1)
+    throw I2CException(strerror(errno));
+}
+
+bool I2CAdapter::IsOpen() const
+{
+  return d->file != -1;
 }
 
 void I2CAdapter::SetAddress(uint8_t address)
@@ -81,6 +90,6 @@ void I2CAdapter::Close()
 {
   if (d->file == -1)
     return; // throw?
-  // TODO error handling
-  close(d->file);
+  if (close(d->file) == -1)
+    throw I2CException(strerror(errno));
 }

@@ -8,6 +8,13 @@ using namespace std;
 
 class I2CAdapter::Private
 {
+public:
+  Private()
+    : isOpen(false)
+  {
+  }
+
+  bool isOpen;
 };
 
 I2CAdapter::I2CAdapter()
@@ -21,6 +28,12 @@ I2CAdapter::~I2CAdapter()
 
 void I2CAdapter::Open(const string&)
 {
+  d->isOpen = true;
+}
+
+bool I2CAdapter::IsOpen() const
+{
+  return d->isOpen;
 }
 
 void I2CAdapter::SetAddress(uint8_t)
@@ -38,4 +51,5 @@ void I2CAdapter::Write(uint8_t, const vector<uint8_t>&)
 
 void I2CAdapter::Close()
 {
+  d->isOpen = false;
 }

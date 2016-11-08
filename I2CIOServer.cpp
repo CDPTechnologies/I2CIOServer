@@ -7,6 +7,8 @@
 #include "I2CAdapter.h"
 #include "I2CDevice.h"
 #include "I2CDeviceFactory.h"
+#include "I2CException.h"
+#include "I2CHelpers.h"
 
 #include <IO/ServerIO/ChannelManager.h>
 #include <OSAPI/Process/OSAPIThread.h>
@@ -44,9 +46,24 @@ public:
 
   void Initialize()
   {
-    i2cAdapter.Open(adapter);
+    if (!TryOpenAdapter())
+      return;
     for (auto device : devices)
       device->Initialize(i2cAdapter);
+  }
+
+  bool TryOpenAdapter()
+  {
+    try
+    {
+      i2cAdapter.Open(adapter);
+      return true;
+    }
+    catch (const I2CException& e)
+    {
+      MessageLine("I2CIOServer: Cannot open adapter %s: %s", adapter.c_str(), e.what());
+      return false;
+    }
   }
 
   void Process()
@@ -57,15 +74,28 @@ public:
       semaphore.Reset();
 
       channelManager->SynchronizeValuesIn();
-      for (auto device : devices)
-        device->Process(i2cAdapter);
+      if (i2cAdapter.IsOpen())
+        for (auto device : devices)
+          device->Process(i2cAdapter);
       channelManager->SynchronizeValuesOut();
     }
   }
 
   void Dispose()
   {
-    i2cAdapter.Close();
+    TryCloseAdapter();
+  }
+
+  void TryCloseAdapter()
+  {
+    try
+    {
+      i2cAdapter.Close();
+    }
+    catch (const I2CException& e)
+    {
+      MessageLine("I2CIOServer: Cannot close adapter %s: %s", adapter.c_str(), e.what());
+    }
   }
 
   unique_ptr<ServerIO::ChannelManager> channelManager;
@@ -117,7 +147,7 @@ void I2CIOServer::ProcessOnline()
 
 bool I2CIOServer::IsCommProblem()
 {
-  return false;
+  return !d->i2cAdapter.IsOpen();
 }
 
 void I2CIOServer::Activate()
