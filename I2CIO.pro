@@ -26,6 +26,8 @@ win*:SOURCES += \
 
 DISTFILES += \
     I2CIO.xml \
+    QDoc/i2cio.qdocconf \
+    QDoc/src/i2cio.qdoc \
     README.md \
     Templates/Models/I2CDeviceChannelGroup.xml \
     Templates/Models/I2CDevice.xml \

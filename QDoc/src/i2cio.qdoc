@@ -1,0 +1,318 @@
+/*!
+  \page i2cio.html
+  \contentspage {I2C I/O} {Contents}
+
+  \nextpage I2C I/O Manual
+
+  \title I2C I/O
+
+  I2C (Inter-Integrated Circuit) is a multi-master, multi-slave, single-ended,
+  serial computer bus typically used for attaching lower-speed peripheral ICs to
+  processors and microcontrollers in short-distance, intra-board communication.
+
+  \list
+  \li \l {I2C I/O Manual}
+  \li \l {I2C I/O Examples}
+  \endlist
+*/
+
+/*!
+  \page i2cio-manual
+  \contentspage {I2C I/O} {Contents}
+
+  \previouspage I2C I/O
+  \nextpage I2C I/O Examples
+
+  \title I2C I/O Manual
+
+  \section1 Intruduction
+
+  This manual describes I2C I/O models. First, it describes three general
+  purpose models - I2CIOServer, I2CDevice and I2CDeviceChannelGroup. Then, it
+  describes some device-specific models - LSM9DS1AccelerometerGyroscope and
+  LSM9DS1Magnetometer - which are built on top of general purpose models.
+
+  \section1 I2CIOServer
+
+  The I2CIOServer is an IOServer that provides access to I2C interface. An
+  I2CIOServer enables communication with external devices over I2C bus.
+
+  The I2CIOServer uses an adapter for reading and writing to I2C bus which is
+  essentially a file specified by \l {#Properties} {Adapter}. An I2CIOServer
+  contains a number of I2CDevice's.
+
+  \section2 Properties
+
+  The I2CIOServer contains the following properties:
+
+  \table
+  \header
+    \li Property
+    \li Description
+  \row
+    \li Adapter
+    \li Filename of the adapter. Adapters are located at \e /dev/ (e.g. \e
+      /dev/i2c-1).
+
+      \note One can run \e {i2cdetect -l} to get the list of available adapters.
+
+  \endtable
+
+  \warning I2CIOServer has a meaningful implementation on Linux only. On Windows
+  it has just a dummy implementation.
+
+  \section1 I2CDevice
+
+  The I2CDevice represents an external device with I2C interface. An I2CDevice
+  is specified by its address \l {#Properties} {Address}. In general each
+  external devices uses one address. Therefore an I2CDevice supports one address
+  only. External devices that use multiple addresses can be represented by
+  multiple I2CDevice's - one I2CDevice for each address. The I2CDevice contains
+  a number of I2CDeviceChannelGroup's.
+
+  \section2 Properties
+
+  The I2CDevice contains the following properties:
+
+  \table
+  \header
+    \li Property
+    \li Description
+  \row
+    \li Name
+    \li Name of the I2C device.
+  \row
+    \li Model
+    \li Model of the I2C device.
+  \row
+    \li Address
+    \li Address of the I2C device.
+  \endtable
+
+  \startnote
+  I2CDevice supports 7-bit addresses only. 10-bit addresses are not supported.
+  \endnote
+
+  \section1 I2CDeviceChannelGroup
+
+  The I2CDeviceChannelGroup represents a block of contiguous registers of an
+  external device which is specified by its starting address (address of the
+  first register) \l {#Properties} {Address}. An I2CDeviceChannelGroup contains
+  a number of CDPSignalChannel's which represent the data in the registers. All
+  CDPSignalChannel's in an I2CDeviceChannelGroup are read or written to the
+  external device using one read or write operation. Therefore input and output
+  CDPSignalChannel's can not be mixed within one I2CDeviceChannelGroup. An
+  I2CDeviceChannelGroup is itself an input or output. If property \l
+  {#Properties} {Input} of an I2CDeviceChannelGroup is \c true then the values
+  are read from the external device; otherwise the values are written to the
+  external device.
+
+  \startnote
+  Although eight consecutive CDPSignalChannel's of type \c bool make up one byte
+  of data it is the user's responsibility to set the number of each
+  CDPSignalChannel.
+  \endnote
+
+  \section2 Properties
+
+  The I2CDeviceChannelGroup contains the following properties:
+
+  \table
+  \header
+    \li Property
+    \li Description
+  \row
+    \li Name
+    \li Name of the I2CDeviceChannelGroup.
+  \row
+    \li Input
+    \li Specifies whether the I2CDeviceChannelGroup is input or output. If the
+      property is true then the I2CDeviceChannelGroup is input; otherwise the
+      I2CDeviceChannelGroup is output.
+  \row
+    \li Address
+    \li Starting address of the block of contiguous registers of the
+      I2CDeviceChannelGroup.
+  \endtable
+
+  \section1 LSM9DS1AccelerometerGyroscope
+
+  The LSM9DS1AccelerometerGyroscope provides accelerometer and gyroscope data
+  of STMicroelectronics LSM9DS1 device.
+
+  \section2 Channels
+
+  The LSM9DS1AccelerometerGyroscope contains the following Channels
+  (configuration Channels are not shown):
+
+  \table
+  \header
+    \li Channel
+    \li Description
+  \row
+    \li AngularRate.AngularRateX
+    \li Angular rate X component in degrees per second (dps). The default range
+      is -245dps...245dps.
+  \row
+    \li AngularRate.AngularRateY
+    \li Angular rate Y component in degrees per second (dps). The default range
+      is -245dps...245dps.
+  \row
+    \li AngularRate.AngularRateZ
+    \li Angular rate Z component in degrees per second (dps). The default range
+      is -245dps...245dps.
+  \row
+    \li Acceleration.AccelerationX
+    \li Acceleration X component in multiples of g-force (g). The default range
+      is -2g...2g.
+  \row
+    \li Acceleration.AccelerationY
+    \li Acceleration Y component in multiples of g-force (g). The default range
+      is -2g...2g.
+  \row
+    \li Acceleration.AccelerationZ
+    \li Acceleration Z component in multiples of g-force (g). The default range
+      is -2g...2g.
+  \endtable
+
+  Configuration Channels are not described.
+
+  \section1 LSM9DS1Magnetometer
+
+  The LSM9DS1Magnetometer provides magnetometer data of STMicroelectronics
+  LSM9DS1 device.
+
+  \section2 Channels
+
+  The LSM9DS1Magnetometer contains the following Channels (configuration
+  Channels are not shown):
+
+  \table
+  \header
+    \li Channel
+    \li Description
+  \row
+    \li MagneticField.MagneticFieldX
+    \li Magnetic field X component in gauss (G). The default range is -4G...4G.
+  \row
+    \li MagneticField.MagneticFieldY
+    \li Magnetic field Y component in gauss (G). The default range is -4G...4G.
+  \row
+    \li MagneticField.MagneticFieldZ
+    \li Magnetic field Z component in gauss (G). The default range is -4G...4G.
+  \endtable
+*/
+
+/*!
+  \page i2cio-examples
+  \contentspage {I2C I/O} {Contents}
+
+  \previouspage I2C I/O Manual
+
+  \title I2C I/O Examples
+
+  \section1 STMicroelectronics LSM9DS1 accelerometer
+
+  This example demonstrates how to get accelerometer data from Rasperry Pi
+  Sense HAT. According to the specification, Rasperry Pi Sense HAT uses
+  STMicroelectronics LSM9DS1 device to provide accelerometer data. Although
+  LSM9DS1AccelerometerGyroscope can already get the data from the device, this
+  example demonstrates how to get the data using general purpose models only.
+
+  \list 1
+    \li Create a system.
+    \li Add I2CIOServer to the application of the system.
+    \li Set Adapter of the I2CIOServer to \e /dev/i2c-1.
+
+      \note One can run \e {i2cdetect -l} to check if \e /dev/i2c-1 is
+      available.
+
+    \li Add I2CDevice to the I2CIOServer.
+    \li Set Address of the I2CDevice to \c 0x6A.
+    \li Add I2CDeviceChannelGroup to the I2CDevice.
+    \li Set Input of the I2CDeviceChannelGroup to \c false.
+    \li Set Address of the I2CDeviceChannelGroup to \c 16.
+    \li Add eight CDPSignalChannels of type \c bool to the
+      I2CDeviceChannelGroup with the following attributes:
+  \endlist
+
+  \table
+  \header
+    \li Name
+    \li Nr
+    \li Value
+  \row
+    \li BW_G0
+    \li 0
+    \li \c 0
+  \row
+    \li BW_G1
+    \li 1
+    \li \c 0
+  \row
+    \li Placeholder
+    \li 2
+    \li \c 0
+  \row
+    \li FS_G0
+    \li 3
+    \li \c 0
+  \row
+    \li FS_G1
+    \li 4
+    \li \c 0
+  \row
+    \li ODR_G0
+    \li 5
+    \li \c 1
+  \row
+    \li ODR_G1
+    \li 6
+    \li \c 1
+  \row
+    \li ODR_G2
+    \li 7
+    \li \c 0
+  \endtable
+
+  \list 10
+    \li Add another I2CDeviceChannelGroup to the I2CDevice.
+    \li Set Input of the I2CDeviceChannelGroup to \c true.
+    \li Set Address of the I2CDeviceChannelGroup to \c 40.
+    \li Add three CDPSignalChannels of type \c short to the
+      I2CDeviceChannelGroup with the following attributes:
+  \endlist
+
+  \table
+  \header
+    \li Name
+  \row
+    \li AccelerationX
+  \row
+    \li AccelerationY
+  \row
+    \li AccelerationZ
+  \endtable
+
+  \list 14
+    \li Add ScalingOperator of type \c double to each CDPSignalChannel of type
+      \c short.
+    \li Add two ScalingPoints of type \c double to each ScalingOperator with the
+      following attributes:
+  \endlist
+
+  \table
+  \header
+    \li InValue
+    \li OutValue
+  \row
+    \li \c -32768
+    \li \c -2
+  \row
+    \li \c 32767
+    \li \c 2
+  \endtable
+
+  The values of the CDPSignalChannels of type \c short should vary between
+  -2g...2g.
+*/

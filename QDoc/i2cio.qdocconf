@@ -1,0 +1,13 @@
+include($$COMMON_QDOCCONF_FILE)
+
+description = "I2CIOServer documentation"
+navigation.homepage = "I2C I/O"
+buildversion = $$REPO_VERSION
+
+qhp.projects = i2cio
+qhp.i2cio.file = i2cio.qhp
+qhp.i2cio.namespace = I2CIO
+qhp.i2cio.virtualFolder = doc
+qhp.i2cio.indexTitle = "I2C I/O"
+
+navigation.landingpage = "I2C I/O"
