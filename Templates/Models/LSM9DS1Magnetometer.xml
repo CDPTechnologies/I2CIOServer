@@ -2,7 +2,7 @@
 
 <Model Name="LSM9DS1Magnetometer" Version="2.0">
 
-  <ModelTypeClass>C++</ModelTypeClass>
+  <ModelTypeClass>XML</ModelTypeClass>
   <BaseModel>I2CDevice</BaseModel>
 
   <Attributes>
@@ -10,8 +10,36 @@
     <Attribute Name="Address" Type="unsigned char" TypeHint="Radix" Radix="16" Required="1" Value="28" Description=""/>
   </Attributes>
 
-  <CDPChannel Name="MagneticFieldX" Model="CDPSignalChannel&lt;double&gt;" Type="double" Input="0" Unit="G" Description=""/>
-  <CDPChannel Name="MagneticFieldY" Model="CDPSignalChannel&lt;double&gt;" Type="double" Input="0" Unit="G" Description=""/>
-  <CDPChannel Name="MagneticFieldZ" Model="CDPSignalChannel&lt;double&gt;" Type="double" Input="0" Unit="G" Description=""/>
+  <ChannelGroup Name="Control3" Input="0" Address="34">
+    <Channel Name="MD0" Model="CDPSignalChannel&lt;bool&gt;" Type="bool" Nr="0" Input="1" Unit="" Value="0" Description=""/>
+    <Channel Name="MD1" Model="CDPSignalChannel&lt;bool&gt;" Type="bool" Nr="1" Input="1" Unit="" Value="0" Description=""/>
+    <Channel Name="SIM" Model="CDPSignalChannel&lt;bool&gt;" Type="bool" Nr="2" Input="1" Unit="" Value="0" Description=""/>
+    <Channel Name="Placeholder2" Model="CDPSignalChannel&lt;bool&gt;" Type="bool" Nr="3" Input="1" Unit="" Value="0" Description=""/>
+    <Channel Name="Placeholder1" Model="CDPSignalChannel&lt;bool&gt;" Type="bool" Nr="4" Input="1" Unit="" Value="0" Description=""/>
+    <Channel Name="LP" Model="CDPSignalChannel&lt;bool&gt;" Type="bool" Nr="5" Input="1" Unit="" Value="0" Description=""/>
+    <Channel Name="Placeholder0" Model="CDPSignalChannel&lt;bool&gt;" Type="bool" Nr="6" Input="1" Unit="" Value="0" Description=""/>
+    <Channel Name="I2C_DISABLE" Model="CDPSignalChannel&lt;bool&gt;" Type="bool" Nr="7" Input="1" Unit="" Value="0" Description=""/>
+  </ChannelGroup>
+
+  <ChannelGroup Name="MagneticField" Input="1" Address="40">
+    <Channel Name="MagneticFieldX" Model="CDPSignalChannel&lt;short&gt;" Type="short" Input="0" Unit="G" Description="">
+      <Operator Name="ScalingOperator" Model="ScalingOperator&lt;double&gt;" Type="double" Description="">
+        <ScalingPoint Name="Min" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="-32768" OutValue="-4"/>
+        <ScalingPoint Name="Max" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="32767" OutValue="4"/>
+      </Operator>
+    </Channel>
+    <Channel Name="MagneticFieldY" Model="CDPSignalChannel&lt;short&gt;" Type="short" Input="0" Unit="G" Description="">
+      <Operator Name="ScalingOperator" Model="ScalingOperator&lt;double&gt;" Type="double" Description="">
+        <ScalingPoint Name="Min" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="-32768" OutValue="-4"/>
+        <ScalingPoint Name="Max" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="32767" OutValue="4"/>
+      </Operator>
+    </Channel>
+    <Channel Name="MagneticFieldZ" Model="CDPSignalChannel&lt;short&gt;" Type="short" Input="0" Unit="G" Description="">
+      <Operator Name="ScalingOperator" Model="ScalingOperator&lt;double&gt;" Type="double" Description="">
+        <ScalingPoint Name="Min" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="-32768" OutValue="-4"/>
+        <ScalingPoint Name="Max" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="32767" OutValue="4"/>
+      </Operator>
+    </Channel>
+  </ChannelGroup>
 
 </Model>

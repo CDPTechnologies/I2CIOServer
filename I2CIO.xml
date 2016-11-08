@@ -1,6 +1,7 @@
 <Library Name="I2CIO">
  <Models>
   <Model Name="I2CDevice"/>
+  <Model Name="I2CDeviceChannelGroup"/>
   <Model Name="I2CIOServer"/>
   <Model Name="LSM9DS1AccelerometerGyroscope"/>
   <Model Name="LSM9DS1Magnetometer"/>

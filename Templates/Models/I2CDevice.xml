@@ -11,6 +11,6 @@
     <Attribute Name="Address" Type="unsigned char" TypeHint="Radix" Radix="16" Required="1" Description=""/>
   </Attributes>
 
-  <Element Name="CDPChannel" Property="0" AcceptsModel="CDPSignalChannel&lt;&gt;"/>
+  <Element Name="ChannelGroup" Property="0" AcceptsModel="I2CDeviceChannelGroup"/>
 
 </Model>

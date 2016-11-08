@@ -6,7 +6,6 @@
 
 #include "I2CAdapter.h"
 #include "I2CDevice.h"
-#include "I2CDeviceFactory.h"
 #include "I2CException.h"
 #include "I2CHelpers.h"
 
@@ -46,23 +45,18 @@ public:
 
   void Initialize()
   {
-    if (!TryOpenAdapter())
-      return;
-    for (auto device : devices)
-      device->Initialize(i2cAdapter);
+    TryOpenAdapter();
   }
 
-  bool TryOpenAdapter()
+  void TryOpenAdapter()
   {
     try
     {
       i2cAdapter.Open(adapter);
-      return true;
     }
     catch (const I2CException& e)
     {
       MessageLine("I2CIOServer: Cannot open adapter %s: %s", adapter.c_str(), e.what());
-      return false;
     }
   }
 
@@ -179,7 +173,7 @@ bool I2CIOServer::HandleXMLElement(XMLElementEx* pEx)
 {
   if (pEx->GetName() == "Device")
   {
-    auto device = I2CDeviceFactory::CreateDevice(pEx->GetAttributeValue("Model"));
+    auto device = new I2CDevice;
     device->Configure(pEx, this, d->channelManager.get());
     d->devices.push_back(device);
     return true;

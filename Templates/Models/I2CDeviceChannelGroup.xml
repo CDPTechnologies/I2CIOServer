@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Model Name="I2CDeviceChannelGroup" Version="2.0">
+
+  <ModelTypeClass>C++</ModelTypeClass>
+  <BaseModel>CDPNode</BaseModel>
+
+  <Attributes>
+    <Attribute Name="Name" Type="string" Required="1" ReadOnly="1" Description=""/>
+    <Attribute Name="Input" Type="bool" Required="1" Description=""/>
+    <Attribute Name="Address" Type="unsigned char" TypeHint="Radix" Radix="16" Required="1" Description=""/>
+  </Attributes>
+
+  <Element Name="Channel" Property="0" AcceptsModel="CDPSignalChannel&lt;&gt;"/>
+
+</Model>
