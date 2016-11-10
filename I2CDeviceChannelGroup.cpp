@@ -21,8 +21,6 @@ using namespace CDP::StudioAPI;
 using namespace ServerIO;
 using namespace std;
 
-static const std::string Name = "Name";
-
 // Calculates buffer begin (inclusive) offset and end (exclusive) offset for
 // each channel
 static vector<pair<size_t, size_t>> CalcChannelDataOffsets(
@@ -198,22 +196,9 @@ I2CDeviceChannelGroup::~I2CDeviceChannelGroup()
 
 void I2CDeviceChannelGroup::Configure(XMLElementEx* element, CDPComponent* owner, ChannelManager* channelManager)
 {
-  auto prefix = element->GetAttributeValue(Name);
-
-  d->name.Create(prefix.append(".").append("Name").c_str(), owner);
-  d->name.Configure(element->FindAttribute("Name"));
-  d->name.AddNodeModeFlags(CDP::StudioAPI::eValueIsReadOnly);
-  d->name.SetNodeReparented(true);
-
-  d->input.Create(prefix.append(".").append("Input").c_str(), owner);
-  d->input.Configure(element->FindAttribute("Input"));
-  d->input.AddNodeModeFlags(CDP::StudioAPI::eValueIsReadOnly);
-  d->input.SetNodeReparented(true);
-
-  d->address.Create(prefix.append(".").append("Address").c_str(), owner);
-  d->address.Configure(element->FindAttribute("Address"));
-  d->address.AddNodeModeFlags(CDP::StudioAPI::eValueIsReadOnly);
-  d->address.SetNodeReparented(true);
+  ConfigureProperty(d->name, "Name", owner, element);
+  ConfigureProperty(d->input, "Input", owner, element);
+  ConfigureProperty(d->address, "Address", owner, element);
 
   d->ConfigureChannels(element, owner, channelManager);
   d->ConfigureChannelData();
