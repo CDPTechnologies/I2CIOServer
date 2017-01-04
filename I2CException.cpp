@@ -1,5 +1,5 @@
 /**
- * (c)2016 CDP Technologies AS
+ * (c)2017 CDP Technologies AS
  */
 
 #include "I2CException.h"
