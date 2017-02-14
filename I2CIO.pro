@@ -1,5 +1,5 @@
-CDPVERSION = 4.0.0
 TYPE = library
+PROJECTNAME = I2CIO
 
 HEADERS += \
     I2CAdapter.h \
