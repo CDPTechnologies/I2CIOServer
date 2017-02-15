@@ -103,7 +103,7 @@ public:
 
     if (auto c = channelManager->NewICDPChannel(element, dummy, module, group, channelInput))
     {
-      auto channelName = name + '.' + element->GetAttributeValue("Name").c_str();
+      auto channelName = deviceName + '.' + name + '.' + element->GetAttributeValue("Name").c_str();
       auto channelNumber = atoi(element->GetAttributeValue("Nr").c_str());
 
       c->Create(channelName.c_str(), owner);
@@ -178,6 +178,7 @@ public:
   unique_ptr<uint8_t[]> channelData;
   size_t channelDataSize;
 
+  string deviceName;
   CDPProperty<string> name;
   CDPProperty<bool> input;
   CDPProperty<unsigned char> address;
@@ -185,9 +186,10 @@ public:
   SendTrigger sendTrigger;
 };
 
-I2CDeviceChannelGroup::I2CDeviceChannelGroup()
+I2CDeviceChannelGroup::I2CDeviceChannelGroup(string deviceName)
   : d(new Private)
 {
+    d->deviceName = move(deviceName);
 }
 
 I2CDeviceChannelGroup::~I2CDeviceChannelGroup()

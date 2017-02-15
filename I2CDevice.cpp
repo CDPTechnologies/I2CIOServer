@@ -29,7 +29,7 @@ public:
 
   void ConfigureChannelGroup(XMLElementEx* element, CDPComponent* owner, ChannelManager* channelManager)
   {
-    auto cg = new I2CDeviceChannelGroup;
+    auto cg = new I2CDeviceChannelGroup(name);
     cg->Configure(element, owner, channelManager);
     channelGroups.push_back(cg);
   }

@@ -16,7 +16,7 @@ class I2CAdapter;
 class I2CDeviceChannelGroup : public CDP::StudioAPI::CDPNode
 {
 public:
-  I2CDeviceChannelGroup();
+  I2CDeviceChannelGroup(std::string deviceName);
   virtual ~I2CDeviceChannelGroup();
 
   void Configure(XMLElementEx* element, CDPComponent* owner, ServerIO::ChannelManager* channelManager);
