@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Model Name="LPS25HPressure" Version="2.0">
+
+  <ModelTypeClass>XML</ModelTypeClass>
+  <BaseModel>I2CDevice</BaseModel>
+
+  <Attributes>
+    <Attribute Name="Model" Type="string" Required="1" ReadOnly="1" Value="LPS25HPressure"/>
+    <Attribute Name="Address" Type="unsigned char" TypeHint="Radix" Radix="16" Required="1" Value="92" Description=""/>
+  </Attributes>
+
+  <ChannelGroup Address='136' Input='1' Name='RefPressure'>
+    <Channel Input='0' Model='CDPSignalChannel&lt;int&gt;' Name='CurrentValue' Type='int' XMLLocation='Signals/Signal'>
+      <Operator Description='Arithmetic left shift operator' Model='LeftShiftOperator&lt;int&gt;' Name='PurgeMSB' Shift='8' Type='int'></Operator>
+      <Operator Description='Arithmetic right shift operator' Model='RightShiftOperator&lt;int&gt;' Name='RestoreMagnitude' Shift='8' Type='int'></Operator>
+      <Operator Description='The ScalingOperator scales from one range and type to another range and type.' Model='ScalingOperator&lt;double&gt;' Name='ScaleToSIValue' Type='double'>
+        <ScalingPoint InValue='-4096' Model='ScalingPoint&lt;double&gt;' Name='Neg4096Point' OutValue='-1' Type='double'></ScalingPoint>
+        <ScalingPoint InValue='4096' Model='ScalingPoint&lt;double&gt;' Name='Pos4096Point' OutValue='1' Type='double'></ScalingPoint></Operator></Channel></ChannelGroup>
+  <ChannelGroup Address='16' Input='0' Name='ControlAveraging'>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='PressureAV0' Nr='0' Type='bool' XMLLocation='Signals/Signal'  DisableOperators='0'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='1'></Channel>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='PressureAV1' Nr='1' Type='bool' XMLLocation='Signals/Signal'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='1'></Channel>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='TemperatureAV0' Nr='2' Type='bool' XMLLocation='Signals/Signal'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='1'></Channel>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='TemperatoreAV1' Nr='3' Type='bool' XMLLocation='Signals/Signal'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='1'></Channel>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='Reserved0' Nr='4' Type='bool' XMLLocation='Signals/Signal'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='0'></Channel>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='Reserved1' Nr='5' Type='bool' XMLLocation='Signals/Signal'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='0'></Channel>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='Reserved2' Nr='6' Type='bool' XMLLocation='Signals/Signal'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='0'></Channel>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='Reserved3' Nr='7' Type='bool' XMLLocation='Signals/Signal'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='0'></Channel></ChannelGroup>
+  <ChannelGroup Address='32' Input='0' Name='Control1'>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='SPIModeSelect' Nr='0' Type='bool' XMLLocation='Signals/Signal'  DisableOperators='0'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='0'></Channel>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='ResetAutoZero' Nr='1' Type='bool' XMLLocation='Signals/Signal'  DisableOperators='0'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='0'></Channel>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='BlockDataUpdate' Nr='2' Type='bool' XMLLocation='Signals/Signal'  DisableOperators='0'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='0'></Channel>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='InterruptEnable' Nr='3' Type='bool' XMLLocation='Signals/Signal'  DisableOperators='0'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='1'></Channel>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='ODR0' Nr='4' Type='bool' XMLLocation='Signals/Signal'  DisableOperators='0'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='1'></Channel>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='ODR1' Nr='5' Type='bool' XMLLocation='Signals/Signal'  DisableOperators='0'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='0'></Channel>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='ODR2' Nr='6' Type='bool' XMLLocation='Signals/Signal'  DisableOperators='0'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='0'></Channel>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='Active' Nr='7' Type='bool' XMLLocation='Signals/Signal'  DisableOperators='0'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='1'></Channel></ChannelGroup>
+  <ChannelGroup Address='33' Input='0' Name='Control2'>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='OneShot' Nr='0' Type='bool' XMLLocation='Signals/Signal'  DisableOperators='0'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='0'></Channel>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='AutoZeroEnable' Nr='1' Type='bool' XMLLocation='Signals/Signal'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='0'></Channel>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='SoftwareReset' Nr='2' Type='bool' XMLLocation='Signals/Signal'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='0'></Channel>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='SPIEnable' Nr='3' Type='bool' XMLLocation='Signals/Signal'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='0'></Channel>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='EnableDecimation' Nr='4' Type='bool' XMLLocation='Signals/Signal'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='0'></Channel>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='FIFOWatermarEnable' Nr='5' Type='bool' XMLLocation='Signals/Signal'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='0'></Channel>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='FIFOEnable' Nr='6' Type='bool' XMLLocation='Signals/Signal'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='0'></Channel>
+    <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='RebootMemContent' Nr='7' Type='bool' XMLLocation='Signals/Signal'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='0'></Channel></ChannelGroup>
+  <ChannelGroup Address='168' Input='1' Name='Pressure'>
+    <Channel Input='0' Model='CDPSignalChannel&lt;int&gt;' Name='CurrentValue' Type='int' XMLLocation='Signals/Signal'>
+      <Operator Description='Arithmetic left shift operator' Model='LeftShiftOperator&lt;int&gt;' Name='PurgeMSB' Shift='8' Type='int'></Operator>
+      <Operator Description='Arithmetic right shift operator' Model='RightShiftOperator&lt;int&gt;' Name='RestoreMagnitude' Shift='8' Type='int'></Operator>
+      <Operator Description='The ScalingOperator scales from one range and type to another range and type.' Model='ScalingOperator&lt;double&gt;' Name='ScaleToSIValue' Type='double'>
+        <ScalingPoint InValue='-4096' Model='ScalingPoint&lt;double&gt;' Name='LowerBound' OutValue='-1' Type='double'></ScalingPoint>
+        <ScalingPoint InValue='4096' Model='ScalingPoint&lt;double&gt;' Name='UpperBound' OutValue='1' Type='double'></ScalingPoint></Operator></Channel></ChannelGroup>
+  <ChannelGroup Address='171' Input='1' Name='Temperature'>
+    <Channel Input='0' Model='CDPSignalChannel&lt;short&gt;' Name='CurrentValue' Type='short' XMLLocation='Signals/Signal'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Unit='N/A'  Value='0'>
+      <Operator Description='The ScalingOperator scales from one range and type to another range and type.' Model='ScalingOperator&lt;double&gt;' Name='ScalingOperator' Type='double'>
+        <ScalingPoint InValue='0' Model='ScalingPoint&lt;double&gt;' Name='ZeroPoint' OutValue='0' Type='double'></ScalingPoint>
+        <ScalingPoint InValue='480' Model='ScalingPoint&lt;double&gt;' Name='DivideBy480' OutValue='1' Type='double'></ScalingPoint></Operator>
+      <Operator Description='Offset operator performing value + offset operation' Model='OffsetOperator&lt;double&gt;' Name='OffsetOperator' Offset='42.5' Type='double'></Operator></Channel></ChannelGroup>
+
+</Model>

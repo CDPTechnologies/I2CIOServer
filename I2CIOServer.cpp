@@ -67,11 +67,13 @@ public:
       semaphore.Wait();
       semaphore.Reset();
 
-      channelManager->SynchronizeValuesIn();
       if (i2cAdapter.IsOpen())
+      {
+        channelManager->SynchronizeValuesIn();
         for (auto device : devices)
           device->Process(i2cAdapter);
-      channelManager->SynchronizeValuesOut();
+        channelManager->SynchronizeValuesOut();
+      }
     }
   }
 

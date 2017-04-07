@@ -5,5 +5,7 @@
   <Model Name="I2CIOServer"/>
   <Model Name="LSM9DS1AccelerometerGyroscope"/>
   <Model Name="LSM9DS1Magnetometer"/>
+  <Model Name="LPS25HPressure"/>
+  <Model Name="HTS221HumidTemp"/>
  </Models>
 </Library>
