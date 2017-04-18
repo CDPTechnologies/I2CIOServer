@@ -107,6 +107,20 @@
   are read from the external device; otherwise the values are written to the
   external device.
 
+  When I2CDeviceChannelGroup cumulative data size is larger than 1 byte, block read
+  or write is used. I2C block reads therefore need to auto increment the address internally.
+  This behavior depends on the exact device (LSM9DS1 discussed in configuration example has
+  a special configuration bit CTRL_REG8 (0x22) IF_ADD_INC that defaults to "1" that enables
+  this automatically. Some devices require the MSb of the register address to be "1" for
+  address auto increment to occur during block reads. The device data sheet needs to be consulted for
+  specific configuration needs.
+
+  Output I2CDeviceChannelGroup is written once on startup and then only on data changes
+  that occur in the Channels. This allows I2C device control registers to be configured during I2CIOServer
+  startup to desired values or changed to the configuration during runtime without excessive load to the bus.
+
+  Input I2CDeviceChannelGroup is read always at the I2CIOServer configured fs frequency.
+
   \startnote
   Although eight consecutive CDPSignalChannel's of type \c bool make up one byte
   of data it is the user's responsibility to set the number of each
@@ -201,6 +215,60 @@
     \li MagneticField.MagneticFieldZ
     \li Magnetic field Z component in gauss (G). The default range is -4G...4G.
   \endtable
+
+
+  \section1 LPS25HPressure
+
+  The LPS25HPressure provides pressure data of STMicroelectronics
+  LPS25H device (it also provides temperature data). The device also
+  has a "AutoZero" mode enabled from Control2.AutoZeroEnable that samples
+  current pressure and provides differential to that as Pressure.CurrentValue.
+  Resetting of the AutoZero function is done trough cycling Control1.ResetAutoZero bit.
+
+  \section2 Channels
+
+  The LPS25HPressure contains the following Channels (configuration and control
+  Channels are not shown):
+
+  \table
+  \header
+    \li Channel
+    \li Description
+  \row
+    \li Pressure.CurrentValue
+    \li Absulute pressure measured in hectopascal (hPa). The device range is 260hPa to 1260hPa.
+  \row
+    \li Temperature.CurrentValue
+    \li Temperature measured in Celsius (C). The device range is -30C to +105C.
+
+  \endtable
+
+
+  \section1 HTS221HumidTemp
+
+  The HTS221HumidTemp provides humidity and temperature data of STMicroelectronics
+  HTS221 device.
+
+  \section2 Channels
+
+  The HTS221HumidTemp contains the following Channels (configuration and control
+  Channels are not shown):
+
+  \table
+  \header
+    \li Channel
+    \li Description
+  \row
+    \li Humidity.CurrentValue
+    \li Relative humidity measured in percent (%). The device range is 20% to 80%.
+  \row
+    \li Temperature.CurrentValue
+    \li Temperature measured in Celsius (C). The device range is +15C to +40C.
+
+  \endtable
+
+
+
 */
 
 /*!
@@ -219,6 +287,10 @@
   LSM9DS1AccelerometerGyroscope can already get the data from the device, this
   example demonstrates how to get the data using general purpose models only.
 
+  This example assumes that the device is located at: /dev/i2c-1
+  and leverages the fact that the LSM9DS1 on Rasperry Pi Sense HAT
+  has device address 0x6A.
+
   \list 1
     \li Create a system.
     \li Add I2CIOServer to the application of the system.
@@ -231,10 +303,16 @@
     \li Set Address of the I2CDevice to \c 0x6A.
     \li Add I2CDeviceChannelGroup to the I2CDevice.
     \li Set Input of the I2CDeviceChannelGroup to \c false.
-    \li Set Address of the I2CDeviceChannelGroup to \c 16.
+    \li Set Address of the I2CDeviceChannelGroup to \c 10 (in hexadecimal notation).
     \li Add eight CDPSignalChannels of type \c bool to the
       I2CDeviceChannelGroup with the following attributes:
   \endlist
+
+  \startnote
+  This channel group of 1 byte at address 0x10 corresponds to CTRL_REG1_G of the LSM9DS1 device.
+  It is used to configure Gyroscope output data rate selection at startup (or runtime when changed).
+  This example sets the Gyroscope output data rate to 952 Hz by setting ODR_G0 and ODR_G1 bits to 1.
+  \endnote
 
   \table
   \header
@@ -278,10 +356,16 @@
   \list 10
     \li Add another I2CDeviceChannelGroup to the I2CDevice.
     \li Set Input of the I2CDeviceChannelGroup to \c true.
-    \li Set Address of the I2CDeviceChannelGroup to \c 40.
+    \li Set Address of the I2CDeviceChannelGroup to \c 28 (in hexadecimal notation).
     \li Add three CDPSignalChannels of type \c short to the
       I2CDeviceChannelGroup with the following attributes:
   \endlist
+
+  \startnote
+  This channel group of 6 bytes at address 0x28 corresponds to OUT_X_XL, OUT_Y_XL, OUT_Z_XL
+  of the LSM9DS1 device containing the linear acceleration of X,Y and Z, two bytes each.
+  This channel block will be read out at I2CIOServer fs frequency.
+  \endnote
 
   \table
   \header
@@ -293,6 +377,10 @@
   \row
     \li AccelerationZ
   \endtable
+
+  As the 16-bit values in two’s complement notation do not correspond to any SI magnitude it is useful to
+  scale the values to known SI units. This is achieved by using ScalingOperator to scale the Max positive value 32767 to represent 2g
+  and Min value -32768 to represent -2g.
 
   \list 14
     \li Add ScalingOperator of type \c double to each CDPSignalChannel of type
@@ -313,6 +401,15 @@
     \li \c 2
   \endtable
 
-  The values of the CDPSignalChannels of type \c short should vary between
+  The values of the CDPSignalChannels of type \c short should now vary between
   -2g...2g.
+
+  It is possible that more complex devices require more operators to be used in the channels to
+  perform for example output calibration like in the HTS221HumidTemp model.
+
+  \startnote
+  Some I2C devices may require a custom CDPOperator to be created by the user to perform complex
+  calibration or formatting of output values.
+  \endnote
+
 */
