@@ -5,12 +5,12 @@
   <ModelTypeClass>C++</ModelTypeClass>
   <BaseModel>IOServer</BaseModel>
   <Priority>high</Priority>
-  <fs>100</fs> 
 
   <Attributes>
     <Attribute Name="Adapter" Type="string" Required="1" Description=""/>
   </Attributes>
 
   <Element Name="Device" Property="0" AcceptsBase="I2CDevice"/>
+  <Element Name="fs" Value="100" Type="double" Description="The Frequency [Hz] that the component statemachine is run at." Required="1"></Element>
 
 </Model>
