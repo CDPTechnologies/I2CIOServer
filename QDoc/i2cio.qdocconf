@@ -13,7 +13,7 @@ qhp.i2cio.indexRoot =
 
 qhp.i2cio.filterAttributes = i2cio $$REPO_VERSION
 
-qhp.i2cio.subprojects = 1manual 2example
+qhp.i2cio.subprojects = 1manual 2example 3arduino
 
 navigation.landingpage = "I2C I/O"
 
@@ -25,4 +25,10 @@ qhp.i2cio.subprojects.2example.title = I2C I/O Examples
 qhp.i2cio.subprojects.2example.indexTitle = I2C I/O Examples
 qhp.i2cio.subprojects.2example.selectors = fake:nothing
 
+qhp.i2cio.subprojects.3arduino.title = I2C I/O Communicating with Arduino compatible microcontrollers
+qhp.i2cio.subprojects.3arduino.indexTitle = I2C I/O Communicating with Arduino compatible microcontrollers
+qhp.i2cio.subprojects.3arduino.selectors = fake:nothing
+
 sourcedirs = src
+
+imagedirs = images
