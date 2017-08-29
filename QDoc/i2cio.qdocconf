@@ -15,8 +15,6 @@ qhp.i2cio.filterAttributes = i2cio $$REPO_VERSION
 
 qhp.i2cio.subprojects = 1manual 2example 3arduino
 
-navigation.landingpage = "I2C I/O"
-
 qhp.i2cio.subprojects.1manual.title = I2C I/O Manual
 qhp.i2cio.subprojects.1manual.indexTitle = I2C I/O Manual
 qhp.i2cio.subprojects.1manual.selectors = fake:nothing
