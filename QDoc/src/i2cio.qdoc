@@ -25,7 +25,8 @@
   \nextpage I2C I/O Examples
 
   \title I2C I/O Manual
-
+  \keyword configureI2CIOServer
+  
   \section1 Intruduction
 
   This manual describes I2C I/O models. First, it describes three general
