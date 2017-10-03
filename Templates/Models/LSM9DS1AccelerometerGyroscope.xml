@@ -23,41 +23,41 @@
 
   <ChannelGroup Name="AngularRate" Input="1" Address="24">
     <Channel Name="AngularRateX" Model="CDPSignalChannel&lt;short&gt;" Type="short" Input="0" Unit="dps" Description="">
-      <Operator Name="ScalingOperator" Model="ScalingOperator&lt;double&gt;" Type="double" Description="">
-        <ScalingPoint Name="Min" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="-32768" OutValue="-245"/>
-        <ScalingPoint Name="Max" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="32767" OutValue="245"/>
+      <Operator Name="ScalingOperator" Model="Automation.ScalingOperator&lt;double&gt;" Type="double" Description="">
+        <ScalingPoint Name="Min" Model="Automation.ScalingPoint&lt;double&gt;" Type="double" InValue="-32768" OutValue="-245"/>
+        <ScalingPoint Name="Max" Model="Automation.ScalingPoint&lt;double&gt;" Type="double" InValue="32767" OutValue="245"/>
       </Operator>
     </Channel>
     <Channel Name="AngularRateY" Model="CDPSignalChannel&lt;short&gt;" Type="short" Input="0" Unit="dps" Description="">
-      <Operator Name="ScalingOperator" Model="ScalingOperator&lt;double&gt;" Type="double" Description="">
-        <ScalingPoint Name="Min" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="-32768" OutValue="-245"/>
-        <ScalingPoint Name="Max" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="32767" OutValue="245"/>
+      <Operator Name="ScalingOperator" Model="Automation.ScalingOperator&lt;double&gt;" Type="double" Description="">
+        <ScalingPoint Name="Min" Model="Automation.ScalingPoint&lt;double&gt;" Type="double" InValue="-32768" OutValue="-245"/>
+        <ScalingPoint Name="Max" Model="Automation.ScalingPoint&lt;double&gt;" Type="double" InValue="32767" OutValue="245"/>
       </Operator>
     </Channel>
     <Channel Name="AngularRateZ" Model="CDPSignalChannel&lt;short&gt;" Type="short" Input="0" Unit="dps" Description="">
-      <Operator Name="ScalingOperator" Model="ScalingOperator&lt;double&gt;" Type="double" Description="">
-        <ScalingPoint Name="Min" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="-32768" OutValue="-245"/>
-        <ScalingPoint Name="Max" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="32767" OutValue="245"/>
+      <Operator Name="ScalingOperator" Model="Automation.ScalingOperator&lt;double&gt;" Type="double" Description="">
+        <ScalingPoint Name="Min" Model="Automation.ScalingPoint&lt;double&gt;" Type="double" InValue="-32768" OutValue="-245"/>
+        <ScalingPoint Name="Max" Model="Automation.ScalingPoint&lt;double&gt;" Type="double" InValue="32767" OutValue="245"/>
       </Operator>
     </Channel>
   </ChannelGroup>
   <ChannelGroup Name="Acceleration" Input="1" Address="40">
     <Channel Name="AccelerationX" Model="CDPSignalChannel&lt;short&gt;" Type="short" Input="0" Unit="g" Description="">
-      <Operator Name="ScalingOperator" Model="ScalingOperator&lt;double&gt;" Type="double" Description="">
-        <ScalingPoint Name="Min" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="-32768" OutValue="-2"/>
-        <ScalingPoint Name="Max" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="32767" OutValue="2"/>
+      <Operator Name="ScalingOperator" Model="Automation.ScalingOperator&lt;double&gt;" Type="double" Description="">
+        <ScalingPoint Name="Min" Model="Automation.ScalingPoint&lt;double&gt;" Type="double" InValue="-32768" OutValue="-2"/>
+        <ScalingPoint Name="Max" Model="Automation.ScalingPoint&lt;double&gt;" Type="double" InValue="32767" OutValue="2"/>
       </Operator>
     </Channel>
     <Channel Name="AccelerationY" Model="CDPSignalChannel&lt;short&gt;" Type="short" Input="0" Unit="g" Description="">
-      <Operator Name="ScalingOperator" Model="ScalingOperator&lt;double&gt;" Type="double" Description="">
-        <ScalingPoint Name="Min" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="-32768" OutValue="-2"/>
-        <ScalingPoint Name="Max" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="32767" OutValue="2"/>
+      <Operator Name="ScalingOperator" Model="Automation.ScalingOperator&lt;double&gt;" Type="double" Description="">
+        <ScalingPoint Name="Min" Model="Automation.ScalingPoint&lt;double&gt;" Type="double" InValue="-32768" OutValue="-2"/>
+        <ScalingPoint Name="Max" Model="Automation.ScalingPoint&lt;double&gt;" Type="double" InValue="32767" OutValue="2"/>
       </Operator>
     </Channel>
     <Channel Name="AccelerationZ" Model="CDPSignalChannel&lt;short&gt;" Type="short" Input="0" Unit="g" Description="">
-      <Operator Name="ScalingOperator" Model="ScalingOperator&lt;double&gt;" Type="double" Description="">
-        <ScalingPoint Name="Min" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="-32768" OutValue="-2"/>
-        <ScalingPoint Name="Max" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="32767" OutValue="2"/>
+      <Operator Name="ScalingOperator" Model="Automation.ScalingOperator&lt;double&gt;" Type="double" Description="">
+        <ScalingPoint Name="Min" Model="Automation.ScalingPoint&lt;double&gt;" Type="double" InValue="-32768" OutValue="-2"/>
+        <ScalingPoint Name="Max" Model="Automation.ScalingPoint&lt;double&gt;" Type="double" InValue="32767" OutValue="2"/>
       </Operator>
     </Channel>
   </ChannelGroup>

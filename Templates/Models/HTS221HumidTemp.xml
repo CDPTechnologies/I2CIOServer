@@ -20,40 +20,40 @@
     <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='Active' Nr='7' Type='bool' Value='1' XMLLocation='Signals/Signal'></Channel></ChannelGroup>
   <ChannelGroup Address='168' CurrentValue='0' Input='1' Name='Humidity'>
     <Channel Input='0' Model='CDPSignalChannel&lt;short&gt;' Name='CurrentValue' Type='short' XMLLocation='Signals/Signal'>
-      <Operator Description='The ScalingOperator scales from one range and type to another range and type.' Model='ScalingOperator&lt;double&gt;' Name='Calibrate' Type='double'>
-        <ScalingPoint InValue='6' Model='ScalingPoint&lt;double&gt;' Name='Low' OutValue='30' Type='double'  InValueRouting='....Calibration.H0_T0_OUT'  OutValueRouting='....Calibration.H0_rH_x2'></ScalingPoint>
-        <ScalingPoint InValue='-9432' Model='ScalingPoint&lt;double&gt;' Name='High' OutValue='68.5' Type='double'  InValueRouting='....Calibration.H1_T0_OUT'  OutValueRouting='....Calibration.H1_rH_x2'></ScalingPoint></Operator></Channel></ChannelGroup>
+      <Operator Description='The ScalingOperator scales from one range and type to another range and type.' Model='Automation.ScalingOperator&lt;double&gt;' Name='Calibrate' Type='double'>
+        <ScalingPoint InValue='6' Model='Automation.ScalingPoint&lt;double&gt;' Name='Low' OutValue='30' Type='double'  InValueRouting='....Calibration.H0_T0_OUT'  OutValueRouting='....Calibration.H0_rH_x2'></ScalingPoint>
+        <ScalingPoint InValue='-9432' Model='Automation.ScalingPoint&lt;double&gt;' Name='High' OutValue='68.5' Type='double'  InValueRouting='....Calibration.H1_T0_OUT'  OutValueRouting='....Calibration.H1_rH_x2'></ScalingPoint></Operator></Channel></ChannelGroup>
   <ChannelGroup Address='170' CurrentValue='0' Input='1' Name='Temperature'>
     <Channel Input='0' Model='CDPSignalChannel&lt;short&gt;' Name='CurrentValue' Type='short' XMLLocation='Signals/Signal'>
-      <Operator Description='The ScalingOperator scales from one range and type to another range and type.' Model='ScalingOperator&lt;double&gt;' Name='Calibrator' Type='double'>
-        <ScalingPoint InValue='4' Model='ScalingPoint&lt;double&gt;' Name='Low' OutValue='21.125' Type='double'  InValueRouting='....Calibration.T0_OUT'  OutValueRouting='....Calibration.T0_degC_x8'></ScalingPoint>
-        <ScalingPoint InValue='833' Model='ScalingPoint&lt;double&gt;' Name='High' OutValue='35.875' Type='double'  InValueRouting='....Calibration.T1_OUT'  OutValueRouting='....Calibration.T1_degC_x8'></ScalingPoint></Operator></Channel></ChannelGroup>
+      <Operator Description='The ScalingOperator scales from one range and type to another range and type.' Model='Automation.ScalingOperator&lt;double&gt;' Name='Calibrator' Type='double'>
+        <ScalingPoint InValue='4' Model='Automation.ScalingPoint&lt;double&gt;' Name='Low' OutValue='21.125' Type='double'  InValueRouting='....Calibration.T0_OUT'  OutValueRouting='....Calibration.T0_degC_x8'></ScalingPoint>
+        <ScalingPoint InValue='833' Model='Automation.ScalingPoint&lt;double&gt;' Name='High' OutValue='35.875' Type='double'  InValueRouting='....Calibration.T1_OUT'  OutValueRouting='....Calibration.T1_degC_x8'></ScalingPoint></Operator></Channel></ChannelGroup>
   <ChannelGroup Address='176' Input='1' Name='Calibration'>
     <Channel Input='0' Model='CDPSignalChannel&lt;unsigned char&gt;' Name='H0_rH_x2' Type='unsigned char' XMLLocation='Signals/Signal'>
-      <Operator Description='The ScalingOperator scales from one range and type to another range and type.' Model='ScalingOperator&lt;double&gt;' Name='Div2' Type='double'>
-        <ScalingPoint InValue='2' Model='ScalingPoint&lt;double&gt;' Name='High' OutValue='1' Type='double'  InValueRouting=''  OutValueRouting=''></ScalingPoint>
-        <ScalingPoint InValue='0' Model='ScalingPoint&lt;double&gt;' Name='Low' OutValue='0' Type='double'  InValueRouting=''  OutValueRouting=''></ScalingPoint></Operator></Channel>
+      <Operator Description='The ScalingOperator scales from one range and type to another range and type.' Model='Automation.ScalingOperator&lt;double&gt;' Name='Div2' Type='double'>
+        <ScalingPoint InValue='2' Model='Automation.ScalingPoint&lt;double&gt;' Name='High' OutValue='1' Type='double'  InValueRouting=''  OutValueRouting=''></ScalingPoint>
+        <ScalingPoint InValue='0' Model='Automation.ScalingPoint&lt;double&gt;' Name='Low' OutValue='0' Type='double'  InValueRouting=''  OutValueRouting=''></ScalingPoint></Operator></Channel>
     <Channel Input='0' Model='CDPSignalChannel&lt;unsigned char&gt;' Name='H1_rH_x2' Type='unsigned char' XMLLocation='Signals/Signal'>
-      <Operator Description='The ScalingOperator scales from one range and type to another range and type.' Model='ScalingOperator&lt;double&gt;' Name='Div2' Type='double'>
-        <ScalingPoint InValue='2' Model='ScalingPoint&lt;double&gt;' Name='High' OutValue='1' Type='double'  InValueRouting=''  OutValueRouting=''></ScalingPoint>
-        <ScalingPoint InValue='0' Model='ScalingPoint&lt;double&gt;' Name='Low' OutValue='0' Type='double'  InValueRouting=''  OutValueRouting=''></ScalingPoint></Operator></Channel>
+      <Operator Description='The ScalingOperator scales from one range and type to another range and type.' Model='Automation.ScalingOperator&lt;double&gt;' Name='Div2' Type='double'>
+        <ScalingPoint InValue='2' Model='Automation.ScalingPoint&lt;double&gt;' Name='High' OutValue='1' Type='double'  InValueRouting=''  OutValueRouting=''></ScalingPoint>
+        <ScalingPoint InValue='0' Model='Automation.ScalingPoint&lt;double&gt;' Name='Low' OutValue='0' Type='double'  InValueRouting=''  OutValueRouting=''></ScalingPoint></Operator></Channel>
     <Channel Input='0' Model='CDPSignalChannel&lt;unsigned char&gt;' Name='T0_degC_x8' Type='unsigned char' XMLLocation='Signals/Signal'>
-      <Operator Description='The ScalingOperator scales from one range and type to another range and type.' Model='ScalingOperator&lt;double&gt;' Name='Div8' Type='double'>
-        <ScalingPoint InValue='8' Model='ScalingPoint&lt;double&gt;' Name='High' OutValue='1' Type='double'  InValueRouting=''  OutValueRouting=''></ScalingPoint>
-        <ScalingPoint InValue='0' Model='ScalingPoint&lt;double&gt;' Name='Low' OutValue='0' Type='double'  InValueRouting=''  OutValueRouting=''></ScalingPoint></Operator></Channel>
+      <Operator Description='The ScalingOperator scales from one range and type to another range and type.' Model='Automation.ScalingOperator&lt;double&gt;' Name='Div8' Type='double'>
+        <ScalingPoint InValue='8' Model='Automation.ScalingPoint&lt;double&gt;' Name='High' OutValue='1' Type='double'  InValueRouting=''  OutValueRouting=''></ScalingPoint>
+        <ScalingPoint InValue='0' Model='Automation.ScalingPoint&lt;double&gt;' Name='Low' OutValue='0' Type='double'  InValueRouting=''  OutValueRouting=''></ScalingPoint></Operator></Channel>
     <Channel Input='0' Model='CDPSignalChannel&lt;unsigned char&gt;' Name='T1_degC_x8' Type='unsigned char' XMLLocation='Signals/Signal'>
-      <Operator Description='The ScalingOperator scales from one range and type to another range and type.' Model='ScalingOperator&lt;double&gt;' Name='Div8' Type='double'>
-        <ScalingPoint InValue='8' Model='ScalingPoint&lt;double&gt;' Name='High' OutValue='1' Type='double'  InValueRouting=''  OutValueRouting=''></ScalingPoint>
-        <ScalingPoint InValue='0' Model='ScalingPoint&lt;double&gt;' Name='Low' OutValue='0' Type='double'  InValueRouting=''  OutValueRouting=''></ScalingPoint></Operator></Channel>
+      <Operator Description='The ScalingOperator scales from one range and type to another range and type.' Model='Automation.ScalingOperator&lt;double&gt;' Name='Div8' Type='double'>
+        <ScalingPoint InValue='8' Model='Automation.ScalingPoint&lt;double&gt;' Name='High' OutValue='1' Type='double'  InValueRouting=''  OutValueRouting=''></ScalingPoint>
+        <ScalingPoint InValue='0' Model='Automation.ScalingPoint&lt;double&gt;' Name='Low' OutValue='0' Type='double'  InValueRouting=''  OutValueRouting=''></ScalingPoint></Operator></Channel>
     <Channel Input='0' Model='CDPSignalChannel&lt;unsigned char&gt;' Name='Reserved0' Type='unsigned char' XMLLocation='Signals/Signal'></Channel>
     <Channel Input='0' Model='CDPSignalChannel&lt;bool&gt;' Name='T0_8' Nr='0' Type='bool' XMLLocation='Signals/Signal'>
-      <Operator Description='Arithmetic left shift operator' Model='LeftShiftOperator&lt;short&gt;' Name='MakeBit8' Shift='8' Type='short'></Operator></Channel>
+      <Operator Description='Arithmetic left shift operator' Model='Automation.LeftShiftOperator&lt;short&gt;' Name='MakeBit8' Shift='8' Type='short'></Operator></Channel>
     <Channel Input='0' Model='CDPSignalChannel&lt;bool&gt;' Name='T0_9' Nr='1' Type='bool' XMLLocation='Signals/Signal'>
-      <Operator Description='Arithmetic left shift operator' Model='LeftShiftOperator&lt;short&gt;' Name='MakeBit9' Shift='9' Type='short'></Operator></Channel>
+      <Operator Description='Arithmetic left shift operator' Model='Automation.LeftShiftOperator&lt;short&gt;' Name='MakeBit9' Shift='9' Type='short'></Operator></Channel>
     <Channel Input='0' Model='CDPSignalChannel&lt;bool&gt;' Name='T1_8' Nr='2' Type='bool' XMLLocation='Signals/Signal'>
-      <Operator Description='Arithmetic left shift operator' Model='LeftShiftOperator&lt;short&gt;' Name='MakeBit8' Shift='8' Type='short'></Operator></Channel>
+      <Operator Description='Arithmetic left shift operator' Model='Automation.LeftShiftOperator&lt;short&gt;' Name='MakeBit8' Shift='8' Type='short'></Operator></Channel>
     <Channel Input='0' Model='CDPSignalChannel&lt;bool&gt;' Name='T1_9' Nr='3' Type='bool' XMLLocation='Signals/Signal'>
-      <Operator Description='Arithmetic left shift operator' Model='LeftShiftOperator&lt;short&gt;' Name='MakeBit9' Shift='9' Type='short'></Operator></Channel>
+      <Operator Description='Arithmetic left shift operator' Model='Automation.LeftShiftOperator&lt;short&gt;' Name='MakeBit9' Shift='9' Type='short'></Operator></Channel>
     <Channel Input='0' Model='CDPSignalChannel&lt;bool&gt;' Name='Reserved1' Nr='4' Type='bool' XMLLocation='Signals/Signal'></Channel>
     <Channel Input='0' Model='CDPSignalChannel&lt;bool&gt;' Name='Reserved2' Nr='5' Type='bool' XMLLocation='Signals/Signal'></Channel>
     <Channel Input='0' Model='CDPSignalChannel&lt;bool&gt;' Name='Reserved3' Nr='6' Type='bool' XMLLocation='Signals/Signal'></Channel>
@@ -62,9 +62,9 @@
     <Channel Input='0' Model='CDPSignalChannel&lt;unsigned short&gt;' Name='Reserved5' Type='unsigned short' XMLLocation='Signals/Signal'></Channel>
     <Channel Input='0' Model='CDPSignalChannel&lt;short&gt;' Name='H1_T0_OUT' Type='short' XMLLocation='Signals/Signal'></Channel>
     <Channel Input='0' Model='CDPSignalChannel&lt;short&gt;' Name='T0_OUT' Type='short' XMLLocation='Signals/Signal'>
-      <Operator Model='BitPackOperator&lt;short&gt;' Name='Add_T0_bit8' Type='short'  BitNo='8'  Source='..T0_8'></Operator>
-      <Operator Model='BitPackOperator&lt;short&gt;' Name='Add_T0_bit9' Type='short'  Source='..T0_9'  BitNo='9'></Operator></Channel>
+      <Operator Model='Automation.BitPackOperator&lt;short&gt;' Name='Add_T0_bit8' Type='short'  BitNo='8'  Source='..T0_8'></Operator>
+      <Operator Model='Automation.BitPackOperator&lt;short&gt;' Name='Add_T0_bit9' Type='short'  Source='..T0_9'  BitNo='9'></Operator></Channel>
     <Channel Input='0' Model='CDPSignalChannel&lt;short&gt;' Name='T1_OUT' Type='short' XMLLocation='Signals/Signal'>
-      <Operator Model='BitPackOperator&lt;short&gt;' Name='Add_T1_bit8' Type='short'  Source='..T1_8'  BitNo='8'></Operator>
-      <Operator Model='BitPackOperator&lt;short&gt;' Name='Add_T1_bit9' Type='short'  Source='..T1_9'  BitNo='9'></Operator></Channel></ChannelGroup>
+      <Operator Model='Automation.BitPackOperator&lt;short&gt;' Name='Add_T1_bit8' Type='short'  Source='..T1_8'  BitNo='8'></Operator>
+      <Operator Model='Automation.BitPackOperator&lt;short&gt;' Name='Add_T1_bit9' Type='short'  Source='..T1_9'  BitNo='9'></Operator></Channel></ChannelGroup>
 </Model>

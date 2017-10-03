@@ -23,21 +23,21 @@
 
   <ChannelGroup Name="MagneticField" Input="1" Address="40">
     <Channel Name="MagneticFieldX" Model="CDPSignalChannel&lt;short&gt;" Type="short" Input="0" Unit="G" Description="">
-      <Operator Name="ScalingOperator" Model="ScalingOperator&lt;double&gt;" Type="double" Description="">
-        <ScalingPoint Name="Min" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="-32768" OutValue="-4"/>
-        <ScalingPoint Name="Max" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="32767" OutValue="4"/>
+      <Operator Name="ScalingOperator" Model="Automation.ScalingOperator&lt;double&gt;" Type="double" Description="">
+        <ScalingPoint Name="Min" Model="Automation.ScalingPoint&lt;double&gt;" Type="double" InValue="-32768" OutValue="-4"/>
+        <ScalingPoint Name="Max" Model="Automation.ScalingPoint&lt;double&gt;" Type="double" InValue="32767" OutValue="4"/>
       </Operator>
     </Channel>
     <Channel Name="MagneticFieldY" Model="CDPSignalChannel&lt;short&gt;" Type="short" Input="0" Unit="G" Description="">
-      <Operator Name="ScalingOperator" Model="ScalingOperator&lt;double&gt;" Type="double" Description="">
-        <ScalingPoint Name="Min" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="-32768" OutValue="-4"/>
-        <ScalingPoint Name="Max" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="32767" OutValue="4"/>
+      <Operator Name="ScalingOperator" Model="Automation.ScalingOperator&lt;double&gt;" Type="double" Description="">
+        <ScalingPoint Name="Min" Model="Automation.ScalingPoint&lt;double&gt;" Type="double" InValue="-32768" OutValue="-4"/>
+        <ScalingPoint Name="Max" Model="Automation.ScalingPoint&lt;double&gt;" Type="double" InValue="32767" OutValue="4"/>
       </Operator>
     </Channel>
     <Channel Name="MagneticFieldZ" Model="CDPSignalChannel&lt;short&gt;" Type="short" Input="0" Unit="G" Description="">
-      <Operator Name="ScalingOperator" Model="ScalingOperator&lt;double&gt;" Type="double" Description="">
-        <ScalingPoint Name="Min" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="-32768" OutValue="-4"/>
-        <ScalingPoint Name="Max" Model="ScalingPoint&lt;double&gt;" Type="double" InValue="32767" OutValue="4"/>
+      <Operator Name="ScalingOperator" Model="Automation.ScalingOperator&lt;double&gt;" Type="double" Description="">
+        <ScalingPoint Name="Min" Model="Automation.ScalingPoint&lt;double&gt;" Type="double" InValue="-32768" OutValue="-4"/>
+        <ScalingPoint Name="Max" Model="Automation.ScalingPoint&lt;double&gt;" Type="double" InValue="32767" OutValue="4"/>
       </Operator>
     </Channel>
   </ChannelGroup>

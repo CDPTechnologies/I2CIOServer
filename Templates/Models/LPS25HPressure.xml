@@ -12,11 +12,11 @@
 
   <ChannelGroup Address='136' Input='1' Name='RefPressure'>
     <Channel Input='0' Model='CDPSignalChannel&lt;int&gt;' Name='CurrentValue' Type='int' XMLLocation='Signals/Signal'>
-      <Operator Description='Arithmetic left shift operator' Model='LeftShiftOperator&lt;int&gt;' Name='PurgeMSB' Shift='8' Type='int'></Operator>
-      <Operator Description='Arithmetic right shift operator' Model='RightShiftOperator&lt;int&gt;' Name='RestoreMagnitude' Shift='8' Type='int'></Operator>
-      <Operator Description='The ScalingOperator scales from one range and type to another range and type.' Model='ScalingOperator&lt;double&gt;' Name='ScaleToSIValue' Type='double'>
-        <ScalingPoint InValue='-4096' Model='ScalingPoint&lt;double&gt;' Name='Neg4096Point' OutValue='-1' Type='double'></ScalingPoint>
-        <ScalingPoint InValue='4096' Model='ScalingPoint&lt;double&gt;' Name='Pos4096Point' OutValue='1' Type='double'></ScalingPoint></Operator></Channel></ChannelGroup>
+      <Operator Description='Arithmetic left shift operator' Model='Automation.LeftShiftOperator&lt;int&gt;' Name='PurgeMSB' Shift='8' Type='int'></Operator>
+      <Operator Description='Arithmetic right shift operator' Model='Automation.RightShiftOperator&lt;int&gt;' Name='RestoreMagnitude' Shift='8' Type='int'></Operator>
+      <Operator Description='The ScalingOperator scales from one range and type to another range and type.' Model='Automation.ScalingOperator&lt;double&gt;' Name='ScaleToSIValue' Type='double'>
+        <ScalingPoint InValue='-4096' Model='Automation.ScalingPoint&lt;double&gt;' Name='Neg4096Point' OutValue='-1' Type='double'></ScalingPoint>
+        <ScalingPoint InValue='4096' Model='Automation.ScalingPoint&lt;double&gt;' Name='Pos4096Point' OutValue='1' Type='double'></ScalingPoint></Operator></Channel></ChannelGroup>
   <ChannelGroup Address='16' Input='0' Name='ControlAveraging'>
     <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='PressureAV0' Nr='0' Type='bool' XMLLocation='Signals/Signal'  DisableOperators='0'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='1'></Channel>
     <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='PressureAV1' Nr='1' Type='bool' XMLLocation='Signals/Signal'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='1'></Channel>
@@ -46,16 +46,16 @@
     <Channel Input='1' Model='CDPSignalChannel&lt;bool&gt;' Name='RebootMemContent' Nr='7' Type='bool' XMLLocation='Signals/Signal'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Status='0'  Unit='N/A'  Value='0'></Channel></ChannelGroup>
   <ChannelGroup Address='168' Input='1' Name='Pressure'>
     <Channel Input='0' Model='CDPSignalChannel&lt;int&gt;' Name='CurrentValue' Type='int' XMLLocation='Signals/Signal'>
-      <Operator Description='Arithmetic left shift operator' Model='LeftShiftOperator&lt;int&gt;' Name='PurgeMSB' Shift='8' Type='int'></Operator>
-      <Operator Description='Arithmetic right shift operator' Model='RightShiftOperator&lt;int&gt;' Name='RestoreMagnitude' Shift='8' Type='int'></Operator>
-      <Operator Description='The ScalingOperator scales from one range and type to another range and type.' Model='ScalingOperator&lt;double&gt;' Name='ScaleToSIValue' Type='double'>
-        <ScalingPoint InValue='-4096' Model='ScalingPoint&lt;double&gt;' Name='LowerBound' OutValue='-1' Type='double'></ScalingPoint>
-        <ScalingPoint InValue='4096' Model='ScalingPoint&lt;double&gt;' Name='UpperBound' OutValue='1' Type='double'></ScalingPoint></Operator></Channel></ChannelGroup>
+      <Operator Description='Arithmetic left shift operator' Model='Automation.LeftShiftOperator&lt;int&gt;' Name='PurgeMSB' Shift='8' Type='int'></Operator>
+      <Operator Description='Arithmetic right shift operator' Model='Automation.RightShiftOperator&lt;int&gt;' Name='RestoreMagnitude' Shift='8' Type='int'></Operator>
+      <Operator Description='The ScalingOperator scales from one range and type to another range and type.' Model='Automation.ScalingOperator&lt;double&gt;' Name='ScaleToSIValue' Type='double'>
+        <ScalingPoint InValue='-4096' Model='Automation.ScalingPoint&lt;double&gt;' Name='LowerBound' OutValue='-1' Type='double'></ScalingPoint>
+        <ScalingPoint InValue='4096' Model='Automation.ScalingPoint&lt;double&gt;' Name='UpperBound' OutValue='1' Type='double'></ScalingPoint></Operator></Channel></ChannelGroup>
   <ChannelGroup Address='171' Input='1' Name='Temperature'>
     <Channel Input='0' Model='CDPSignalChannel&lt;short&gt;' Name='CurrentValue' Type='short' XMLLocation='Signals/Signal'  InternalValue='0'  RoutedProperties='Value'  Routing=''  RoutingStatus=''  Unit='N/A'  Value='0'>
-      <Operator Description='The ScalingOperator scales from one range and type to another range and type.' Model='ScalingOperator&lt;double&gt;' Name='ScalingOperator' Type='double'>
-        <ScalingPoint InValue='0' Model='ScalingPoint&lt;double&gt;' Name='ZeroPoint' OutValue='0' Type='double'></ScalingPoint>
-        <ScalingPoint InValue='480' Model='ScalingPoint&lt;double&gt;' Name='DivideBy480' OutValue='1' Type='double'></ScalingPoint></Operator>
-      <Operator Description='Offset operator performing value + offset operation' Model='OffsetOperator&lt;double&gt;' Name='OffsetOperator' Offset='42.5' Type='double'></Operator></Channel></ChannelGroup>
+      <Operator Description='The ScalingOperator scales from one range and type to another range and type.' Model='Automation.ScalingOperator&lt;double&gt;' Name='ScalingOperator' Type='double'>
+        <ScalingPoint InValue='0' Model='Automation.ScalingPoint&lt;double&gt;' Name='ZeroPoint' OutValue='0' Type='double'></ScalingPoint>
+        <ScalingPoint InValue='480' Model='Automation.ScalingPoint&lt;double&gt;' Name='DivideBy480' OutValue='1' Type='double'></ScalingPoint></Operator>
+      <Operator Description='Offset operator performing value + offset operation' Model='Automation.OffsetOperator&lt;double&gt;' Name='OffsetOperator' Offset='42.5' Type='double'></Operator></Channel></ChannelGroup>
 
 </Model>
