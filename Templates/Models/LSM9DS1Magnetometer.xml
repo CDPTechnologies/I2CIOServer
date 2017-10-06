@@ -6,6 +6,7 @@
   <BaseModel>I2CDevice</BaseModel>
 
   <Attributes>
+    <Attribute Name="Description" Value="Provides magnetometer data of STMicroelectronics LSM9DS1 device" Type="string"/>
     <Attribute Name="Model" Type="string" Required="1" ReadOnly="1" Value="LSM9DS1Magnetometer"/>
     <Attribute Name="Address" Type="unsigned char" TypeHint="Radix" Radix="16" Required="1" Value="28" Description=""/>
   </Attributes>

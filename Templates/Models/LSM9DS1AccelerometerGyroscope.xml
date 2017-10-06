@@ -6,6 +6,7 @@
   <BaseModel>I2CDevice</BaseModel>
 
   <Attributes>
+    <Attribute Name="Description" Value="Provides accelerometer and gyroscope data of STMicroelectronics LSM9DS1 device." Type="string"/>
     <Attribute Name="Model" Type="string" Required="1" ReadOnly="1" Value="LSM9DS1AccelerometerGyroscope"/>
     <Attribute Name="Address" Type="unsigned char" TypeHint="Radix" Radix="16" Required="1" Value="106" Description=""/>
   </Attributes>

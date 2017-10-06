@@ -7,6 +7,7 @@
   <Priority>high</Priority>
 
   <Attributes>
+    <Attribute Name="Description" Value="Communicate with external devices over I2C bus" Type="string"/>
     <Attribute Name="Adapter" Type="string" Required="1" Description=""/>
   </Attributes>
 

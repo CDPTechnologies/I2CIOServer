@@ -5,6 +5,7 @@
   <BaseModel>I2CDevice</BaseModel>
 
   <Attributes>
+    <Attribute Name="Description" Value="Provides humidity and temperature data of STMicroelectronics HTS221 device" Type="string"/>
     <Attribute Name="Model" Type="string" Required="1" ReadOnly="1" Value="HTS221HumidTemp"/>
     <Attribute Name="Address" Type="unsigned char" TypeHint="Radix" Radix="16" Required="1" Value="95" Description=""/>
   </Attributes>

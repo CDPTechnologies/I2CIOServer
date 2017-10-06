@@ -6,6 +6,7 @@
   <BaseModel>CDPNode</BaseModel>
 
   <Attributes>
+    <Attribute Name="Description" Value="External device with I2C interface" Type="string"/>
     <Attribute Name="Name" Type="string" Required="1" ReadOnly="1"/>
     <Attribute Name="Model" Type="string" Required="1" ReadOnly="1" Value="I2CDevice"/>
     <Attribute Name="Address" Type="unsigned char" TypeHint="Radix" Radix="16" Required="1" Description=""/>
