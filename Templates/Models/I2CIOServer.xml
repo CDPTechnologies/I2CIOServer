@@ -9,6 +9,7 @@
   <Attributes>
     <Attribute Name="Description" Value="Communicate with external devices over I2C bus" Type="string"/>
     <Attribute Name="Adapter" Type="string" Required="1" Description=""/>
+    <Attribute Name="Model" Type="string" Required="1" Value="I2CIOServer" ReadOnly="1"></Attribute>
   </Attributes>
 
   <Element Name="Device" Property="0" AcceptsBase="I2CDevice"/>
