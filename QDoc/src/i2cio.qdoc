@@ -26,13 +26,16 @@
 
   \title I2C I/O Manual
   \keyword configureI2CIOServer
-  
-  \section1 Intruduction
+  \keyword configureADS1115IOServer
+
+  \section1 Introduction
 
   This manual describes I2C I/O models. First, it describes three general
   purpose models - I2CIOServer, I2CDevice and I2CDeviceChannelGroup. Then, it
   describes some device-specific models - LSM9DS1AccelerometerGyroscope and
   LSM9DS1Magnetometer - which are built on top of general purpose models.
+  Finally, it includes a special \l {ADS1115 IOServer} {IOServer for ADS1115}
+  analog-to-digital converter.
 
   \section1 I2CIOServer
 
@@ -269,7 +272,103 @@
 
   \endtable
 
+  \section1 ADS1115 IOServer
 
+  The ADS1115 IOServer provides access to I2C interface to communicate with
+  ADS1115 analog-to-digital converter.
+
+  The IOServer uses an adapter for reading and writing to I2C bus which is
+  essentially a file specified by \l {#Properties} {Adapter}. For each ADS1115
+  input there is a signal providing the values for easy access and
+  a property to enable/disable inputs. Data rate and gain are configurable
+  by properties.
+
+  \section2 Signals
+
+  The ADS1115 IOServer contains the following signals:
+
+  \table
+  \header
+    \li Signal
+    \li Description
+  \row
+    \li A0
+    \li Voltage difference between A0 and GND
+  \row
+    \li A1
+    \li Voltage difference between A1 and GND
+  \row
+    \li A2
+    \li Voltage difference between A2 and GND
+  \row
+    \li A3
+    \li Voltage difference between A3 and GND
+  \row
+    \li A0A1
+    \li Voltage difference between A0 and A1
+  \row
+    \li A0A3
+    \li Voltage difference between A0 and A3
+  \row
+    \li A1A3
+    \li Voltage difference between A1 and A3
+  \row
+    \li A2A3
+    \li Voltage difference between A2 and A3
+  \endtable
+
+  \section2 Properties
+
+  The ADS1115 IOServer contains the following properties:
+
+  \table
+  \header
+    \li Property
+    \li Description
+  \row
+    \li Adapter
+    \li Filename of the adapter. Adapters are located at \e /dev/ (e.g. \e
+      /dev/i2c-1).
+
+      \note One can run \e {i2cdetect -l} to get the list of available adapters.
+  \row
+    \li DataRate
+    \li Controls the data rate setting. Valid values are 8SPS, 16SPS, 32SPS, 64SPS,
+        128SPS (default), 250SPS, 475SPS and 860SPS
+  \row
+    \li Gain
+    \li Programmable gain amplifier. Note that in no event should more than VDD + 0.3V be applied to this device.
+        Valid values are ±6.144V, ±4.096V, ±2.048V (default), ±1.024V, ±0.512V and ±0.256V.
+  \row
+    \li EnableA0
+    \li Enables reading input into A0 signal. Disable to improve performance
+  \row
+    \li EnableA1
+    \li Enables reading input into A1 signal. Disable to improve performance
+  \row
+    \li EnableA2
+    \li Enables reading input into A2 signal. Disable to improve performance
+  \row
+    \li EnableA3
+    \li Enables reading input into A3 signal. Disable to improve performance
+  \row
+    \li EnableA0A1
+    \li Enables reading input into A0A1 signal. Disable to improve performance
+  \row
+    \li EnableA0A3
+    \li Enables reading input into A0A3 signal. Disable to improve performance
+  \row
+    \li EnableA1A3
+    \li Enables reading input into A1A3 signal. Disable to improve performance
+  \row
+    \li EnableA2A3
+    \li Enables reading input into A2A3 signal. Disable to improve performance
+
+  \endtable
+
+  \warning I2CIOServer has a meaningful implementation on Linux only. On Windows
+  it has just a dummy implementation.
+  \note Comparator functionality of ADS1115 is not supported.
 
 */
 
@@ -441,7 +540,7 @@
   \section2 Selecting the I2C adapter
   \pointerA
   Then we enter the component.
-  
+
   \pointerB
   We need to scroll down to properties and enter the correct i2c adapter.
 
@@ -456,9 +555,9 @@
   \pointerA We select the I2CIOServer component.
 
   \pointerB Then we enter a name and select I2CDevice from the "Model" dropdown.
-  
+
   \pointerC We then type in the device's I2C address.
-  
+
   \startnote
   We will specify this same address in the Arduino code later.
   \endnote
@@ -469,9 +568,9 @@
   \pointerA We type in a name for our channelgroup.
 
   \pointerB We do not tick the input checkbox.
-  
+
   \pointerC We type in a address for our channel.
-  
+
   \startnote
   In the arduino code we will handle these addresses with a simple switch case.
   The raw I2C data that will be transmitted to the arduino will be "channel address" one byte, followed by the data in the channel.
@@ -487,16 +586,16 @@
   If the data is larger than 1 byte in size then it will be split into several writes, the bytes will be sent in the order "least significant first".
   In the Arduino code we will have to read in the data one byte at the time. The "short" type in this case will use 16 bits i.e. 2 bytes.
   \endnote
-  
+
   \pointerC We tick the input box because we wish to input data into this SignalChannel.
-  
+
   \image setup_i2c_4.png
 
   \section1 Setting up our Arduino as a I2C Slave
   \startnote
   One important thing to remember is that if you wish the arduino to be the I2C Master then you would need a level converter for the logic.
   This is because the arduino operates using a 5 volt logic level, the Raspberry is only constructed for a 3.3 volt logic level.
-  However this is not a problem as long as the Raspberry is the Master, because the master sets the voltage and 3.3 is still read correctly by the arduino. 
+  However this is not a problem as long as the Raspberry is the Master, because the master sets the voltage and 3.3 is still read correctly by the arduino.
   \endnote
 
   Here you can see the code sample for the Arduino. You can upload it to your Arduino using the Arduino IDE.
@@ -504,7 +603,7 @@
   The "ls" and "ms" are the bytes sendt from the Raspberry. We configured the Raspberry to send a 16 bit short, in the Arduino it gets read in one byte at the time (8 bit).
 
   If you decide to use a larger type then you need to handle this. If you decide to expand upon this code then you could handle this in the channel's case inside the switch statement.
-  
+
   \code
     #include <Wire.h>
 
@@ -518,7 +617,7 @@
       // If an I2C address is not specified then we join as master.
       // We initialize i2c as slave with 4 as our address.
       Wire.begin(ARDUINO_I2C_ADDRESS);
-      
+
       // We start the serial communication with 9600 baud rate.
       // In order to print out our values.
       Serial.begin(9600);
@@ -537,7 +636,7 @@
       i2c_channel = Wire.read();
       int ls = Wire.read();
       int ms = Wire.read();
-      
+
       switch(i2c_channel){
         case POSITION_I2C_ADDRESS:
           position = (ms << 8) | ls;
@@ -556,7 +655,7 @@
   \endcode
 
   \section1 Wiring the Raspberry to the Arduino
-  We wire the SDA, SCL and ground pins together. 
+  We wire the SDA, SCL and ground pins together.
   \image wiring
 
   \section1 Running the system

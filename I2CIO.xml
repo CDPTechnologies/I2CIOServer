@@ -7,5 +7,6 @@
   <Model Name="LSM9DS1Magnetometer"/>
   <Model Name="LPS25HPressure"/>
   <Model Name="HTS221HumidTemp"/>
+  <Model Name="I2CIO.ADS1115IOServer"/>
  </Models>
 </Library>

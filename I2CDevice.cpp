@@ -48,20 +48,6 @@ public:
     }
   }
 
-  bool TryWriteAdapter(I2CAdapter& adapter, uint8_t subaddress, const std::vector<uint8_t>& data) const
-  {
-    try
-    {
-      adapter.Write(subaddress, data);
-      return true;
-    }
-    catch (const I2CException& e)
-    {
-      MessageLine("I2CDevice: Cannot write to address %s: %s", subaddress, e.what());
-      return false;
-    }
-  }
-
   bool TryReadAdapter(I2CAdapter& adapter, uint8_t subaddress, std::vector<uint8_t>& buffer) const
   {
     try
