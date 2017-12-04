@@ -66,6 +66,39 @@
   \warning I2CIOServer has a meaningful implementation on Linux only. On Windows
   it has just a dummy implementation.
 
+  \section2 I2C Adapter setup on Linux
+
+  Linux targets may need additional setup steps to enable I2C bus.
+
+  For example on Raspberry Pi with Rasbian one needs
+  to run Raspberry configuration tool to enable I2C kernel module.
+  Run:
+  \badcode
+  $ sudo raspi-config
+  \endcode
+
+  Select \e{Interfacing options}. Choose \e{I2C} press enter and enter. Move to finish with the tab key.
+
+  Second step is to install tools for the I2C bus.
+  Run:
+  \badcode
+  $ sudo apt-get install i2c-tools
+  \endcode
+
+  It should be possible now to check for the I2C devices on your target.
+  Run:
+  \badcode
+  i2cdetect -l
+  \endcode
+  The command output should list something like:
+  \badcode
+  $ i2c-1 i2c bcm2835 I2C adapter I2C adapter
+  \endcode
+
+  The \b{i2c-1} is the adapter that needs to be set in \b{I2CIOServer} \b{Adapter} property with
+  its full system path \b{/dev/i2c-1}
+
+
   \section1 I2CDevice
 
   The I2CDevice represents an external device with I2C interface. An I2CDevice
