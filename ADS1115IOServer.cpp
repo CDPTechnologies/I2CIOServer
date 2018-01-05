@@ -24,6 +24,7 @@ ADS1115IOServer::ADS1115IOServer()
   , m_mappedDataRate(DATA_RATE_MAP.at("128SPS"))
   , m_mappedGain(GAIN_MAP.at("±2.048V"))
   , m_periodMs(10)
+  , m_commError(false)
 {
 }
 
@@ -119,14 +120,24 @@ void I2CIO::ADS1115IOServer::Main()
     try
     {
       ReadValues();
+      if (m_commError)
+      {
+        m_commError = false;
+        RunInComponentThread([=] () { m_transmissionAlarm.Clear(); });
+      }
     }
     catch (std::exception const& e)
     {
-      RunInComponentThread([=] ()
+      std::string messageCopy = e.what();
+      if (!m_commError)
       {
-        m_transmissionAlarm.Set();
-        m_transmissionAlarm.SetAlarmText("ADS1115IOServer::Main: " + std::string(e.what()));
-      });
+        RunInComponentThread([=] ()
+        {
+          m_transmissionAlarm.Set();
+          m_transmissionAlarm.SetAlarmText("ADS1115IOServer::Main: " + std::string(messageCopy));
+        });
+        m_commError = true;
+      }
     }
     m_processEvent.Wait();
     m_processEvent.Reset();

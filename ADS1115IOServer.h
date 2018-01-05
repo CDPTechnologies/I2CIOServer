@@ -43,6 +43,7 @@ private:
   std::atomic<int> m_mappedDataRate;
   std::atomic<int> m_mappedGain;
   std::atomic<int> m_periodMs;
+  bool m_commError;
 };
 
 }
