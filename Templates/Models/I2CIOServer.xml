@@ -8,7 +8,7 @@
 
   <Attributes>
     <Attribute Name="Description" Value="Communicate with external devices over I2C bus" Type="string"/>
-    <Attribute Name="Adapter" Type="string" Required="1" Description=""/>
+    <Attribute Name="Adapter" Type="string" Value="/dev/i2c-1" Required="1" Description="Filename of the adapter. Adapters are located at /dev/ (e.g. /dev/i2c-1). Note: One can run i2cdetect -l to get the list of available adapters."/>
     <Attribute Name="Model" Type="string" Required="1" Value="I2CIOServer" ReadOnly="1"></Attribute>
   </Attributes>
 

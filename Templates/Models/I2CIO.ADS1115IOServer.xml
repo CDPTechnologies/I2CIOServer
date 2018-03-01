@@ -18,17 +18,17 @@
   <Signal Value="" Model="CDPSignal&lt;short&gt;" Description="Voltage difference between A1 and A3" Type="short" Name="A1A3" Unit="" Input="0"/>
   <Signal Value="" Model="CDPSignal&lt;short&gt;" Description="Voltage difference between A2 and A3" Type="short" Name="A2A3" Unit="" Input="0"/>
  </Signals>
- <Element RouteMethod="RouteEvent" Description="Filename of the adapter. Adapters are located at /dev/ (e.g. /dev/i2c-1). Note: One can run i2cdetect -l to get the list of available adapterss." Type="string" Name="Adapter" SaveOnChange="0" LogEventOnChange="0"/>
- <Element Selection="8SPS;16SPS;32SPS;64SPS;128SPS;250SPS;475SPS;860SPS;" RouteMethod="RouteEvent" Value="128SPS" TypeHint="Selection" Description="Controls the data rate setting" Type="string" Name="DataRate" SaveOnChange="0" LogEventOnChange="0"/>
- <Element Selection="±6.144V;±4.096V;±2.048V;±1.024V;±0.512V;±0.256V" Value="±2.048V" TypeHint="Selection" Required="1" Description="Programmable gain amplifier. In no event should more than VDD + 0.3V be applied to this device." Type="string" Name="Gain" SaveOnChange="1" LogEventOnChange="1"/>
- <Element RouteMethod="RouteEvent" Value="1" Description="Enables reading input into A0 signal. Disable to improve performance" Type="bool" Name="EnableA0" SaveOnChange="1" LogEventOnChange="1"/>
- <Element RouteMethod="RouteEvent" Value="1" Description="Enables reading input into A1 signal. Disable to improve performance" Type="bool" Name="EnableA1" SaveOnChange="1" LogEventOnChange="1"/>
- <Element RouteMethod="RouteEvent" Value="1" Description="Enables reading input into A2 signal. Disable to improve performance" Type="bool" Name="EnableA2" SaveOnChange="1" LogEventOnChange="1"/>
- <Element RouteMethod="RouteEvent" Value="1" Description="Enables reading input into A3 signal. Disable to improve performance" Type="bool" Name="EnableA3" SaveOnChange="1" LogEventOnChange="1"/>
- <Element RouteMethod="RouteEvent" Value="1" Description="Enables reading input into A0A1 signal. Disable to improve performance" Type="bool" Name="EnableA0A1" SaveOnChange="1" LogEventOnChange="1"/>
- <Element RouteMethod="RouteEvent" Value="1" Description="Enables reading input into A0A3 signal. Disable to improve performance" Type="bool" Name="EnableA0A3" SaveOnChange="1" LogEventOnChange="1"/>
- <Element RouteMethod="RouteEvent" Value="1" Description="Enables reading input into A1A3 signal. Disable to improve performance" Type="bool" Name="EnableA1A3" SaveOnChange="1" LogEventOnChange="1"/>
- <Element RouteMethod="RouteEvent" Value="1" Description="Enables reading input into A2A3 signal. Disable to improve performance" Type="bool" Name="EnableA2A3" SaveOnChange="1" LogEventOnChange="1"/>
+ <Element RouteMethod="RouteEvent" Value="/dev/i2c-1" Required="1" Description="Filename of the adapter. Adapters are located at /dev/ (e.g. /dev/i2c-1). Note: One can run i2cdetect -l to get the list of available adapters." Type="string" Name="Adapter" SaveOnChange="0" LogEventOnChange="0"/>
+ <Element Selection="8SPS;16SPS;32SPS;64SPS;128SPS;250SPS;475SPS;860SPS;" RouteMethod="RouteEvent" Value="128SPS" Required="1" TypeHint="Selection" Description="Controls the data rate setting" Type="string" Name="DataRate" SaveOnChange="0" LogEventOnChange="0"/>
+ <Element Selection="±6.144V;±4.096V;±2.048V;±1.024V;±0.512V;±0.256V" Value="±2.048V" Required="1" TypeHint="Selection" Required="1" Description="Programmable gain amplifier. In no event should more than VDD + 0.3V be applied to this device." Type="string" Name="Gain" SaveOnChange="1" LogEventOnChange="1"/>
+ <Element RouteMethod="RouteEvent" Value="1" Required="1" Description="Enables reading input into A0 signal. Disable to improve performance" Type="bool" Name="EnableA0" SaveOnChange="1" LogEventOnChange="1"/>
+ <Element RouteMethod="RouteEvent" Value="1" Required="1" Description="Enables reading input into A1 signal. Disable to improve performance" Type="bool" Name="EnableA1" SaveOnChange="1" LogEventOnChange="1"/>
+ <Element RouteMethod="RouteEvent" Value="1" Required="1" Description="Enables reading input into A2 signal. Disable to improve performance" Type="bool" Name="EnableA2" SaveOnChange="1" LogEventOnChange="1"/>
+ <Element RouteMethod="RouteEvent" Value="1" Required="1" Description="Enables reading input into A3 signal. Disable to improve performance" Type="bool" Name="EnableA3" SaveOnChange="1" LogEventOnChange="1"/>
+ <Element RouteMethod="RouteEvent" Value="1" Required="1" Description="Enables reading input into A0A1 signal. Disable to improve performance" Type="bool" Name="EnableA0A1" SaveOnChange="1" LogEventOnChange="1"/>
+ <Element RouteMethod="RouteEvent" Value="1" Required="1" Description="Enables reading input into A0A3 signal. Disable to improve performance" Type="bool" Name="EnableA0A3" SaveOnChange="1" LogEventOnChange="1"/>
+ <Element RouteMethod="RouteEvent" Value="1" Required="1" Description="Enables reading input into A1A3 signal. Disable to improve performance" Type="bool" Name="EnableA1A3" SaveOnChange="1" LogEventOnChange="1"/>
+ <Element RouteMethod="RouteEvent" Value="1" Required="1" Description="Enables reading input into A2A3 signal. Disable to improve performance" Type="bool" Name="EnableA2A3" SaveOnChange="1" LogEventOnChange="1"/>
  <Alarms>
   <Alarm Level="Error" Name="TransmissionAlarm" Description="Error with I2C communication"/>
  </Alarms>
