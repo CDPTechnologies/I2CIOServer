@@ -1,3 +1,4 @@
+CDPVERSION = 4.4
 TYPE = library
 PROJECTNAME = I2CIO
 
